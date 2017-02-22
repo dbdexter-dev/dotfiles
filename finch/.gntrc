@@ -1,0 +1,9 @@
+# Custom color palette because I can't read gray on blue
+
+[colorpairs]
+# Let me see what I am typing, please
+text = green; default
+title = black; blue
+highlight = white; blue
+
+# vim: ft=dosini
