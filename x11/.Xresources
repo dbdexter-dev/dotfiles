@@ -1,0 +1,30 @@
+!Color scheme to be adopted by as many applications as possible
+#define BG #212121
+#define TEXT #f5f5f5
+#define INACTIVE_BG #323232
+#define ACTIVE #ff9100
+#define IND #00e676
+#define UNSEL #909090
+
+i3wm.bgcolor: BG
+i3wm.textcolor: TEXT
+i3wm.inactive_bgcolor: INACTIVE_BG
+i3wm.ind_color: IND
+i3wm.active_color: ACTIVE
+i3wm.unsel_textcolor: UNSEL
+i3wm.barbgcolor: #21212100
+
+rofi.color-enabled: true
+rofi.color-window: BG, IND, IND
+rofi.color-normal: BG, UNSEL, INACTIVE_BG, IND, BG
+rofi.color-active: BG, IND, INACTIVE_BG, IND, BG
+
+rofi.font: SFNS Display 12
+rofi.separator-style: solid
+rofi.lines: 6
+rofi.eh: 1
+rofi.bw: 0
+rofi.width: 500
+
+rofi.kb-mode-next:		Tab
+rofi.kb-mode-previous:	Control+Tab

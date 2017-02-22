@@ -1,0 +1,8 @@
+#!/bin/bash
+
+echo -n "$(xbacklight -get | cut -d"." -f1)%"
+
+case $BLOCK_BUTTON in
+	4) /home/dbdexter/.config/i3/i3blocks/backlight up ;;
+	5) /home/dbdexter/.config/i3/i3blocks/backlight down ;;
+esac

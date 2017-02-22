@@ -1,0 +1,8 @@
+#!/bin/zsh
+
+# Switch theme from light to dark
+echo "material light\nmaterial dark"
+[[ -n $@ ]] || exit
+
+~/.theme $(cut -d" " -f2 <<< $@)
+killall rofi
