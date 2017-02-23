@@ -9,8 +9,6 @@
 #
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!
 
-# Disable borders and titles for every pane
-for_window [class="^.*"] border pixel 0
 
 set $mod Mod4
 set_from_resource $bg_color i3wm.bgcolor #fdf6e3
@@ -54,15 +52,9 @@ bindsym $mod+Shift+q kill
 # start rofi (a program launcher)
 bindsym $mod+d exec "rofi -show run -modi \\"run,man:$rofidir/man,theme:$rofidir/theme\\""
 bindsym mod1+Tab exec "rofi -show window -modi window"
-# Enable floating for man pages spawned by rofi
-for_window [class="rofi-window"] floating enable
-# There also is the (new) i3-dmenu-desktop which only displays applications
-# shipping a .desktop file. It is a wrapper around dmenu, so you need that
-# installed.
-# bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
 
 # change focus
-bindsym $mod+j focus llayouteft
+bindsym $mod+j focus left
 bindsym $mod+k focus down
 bindsym $mod+l focus up
 bindsym $mod+semicolon focus right
@@ -126,7 +118,11 @@ assign [class="Vivaldi-stable"] $workspace3
 assign [class="Midori"] $workspace3
 assign [class="Keepassx2"] $workspace10
 
+# Disable borders and titles for every pane
+for_window [class="^.*"] border pixel 0
 for_window [class="Peek"] floating enable
+# Enable floating for man pages spawned by rofi
+for_window [class="rofi-window"] floating enable
 
 # switch to workspace
 bindsym $mod+1 workspace $workspace1
@@ -227,6 +223,7 @@ bar {
 bindsym $mod+Shift+x exec --no-startup-id i3lock -i ~/.config/i3/lockscreen.png && sleep 0.5 && xset dpms force off
 # bindsym $mod+Shift+x exec i3lock --color="$inactive_bg_color" -d -I 10
 bindsym Print exec --no-startup-id scrot ~/Screenshots/%Y-%m-%d-%H:%M:%S_sshot.png
+
 # Enable compton for added eye-candy
 # -i: inactive window alpha
 # -D: fade in/out fade step, in millisecs
@@ -236,12 +233,14 @@ exec --no-startup-id compton -i 0.8 -D 4 -b
 # Start NetworkManager tray widget
 exec_always --no-startup-id nm-applet
 
+# Start up finch, a TUI chat client based on libpurple
+exec --no-startup-id "termite --class=\\"finch\\" -e finch"
 # Load terminal on first workspace at boot
 exec --no-startup-id i3-sensible-terminal
 
 # Run web browser at boot
 # exec --no-startup-id vivaldi-stable
-exec --no-startup-id midori
+exec --no-startup-id $BROWSER
 
 # Set wallpaper
 exec_always feh --bg-scale ~/.config/i3/.wallpapers/bg_dark.*

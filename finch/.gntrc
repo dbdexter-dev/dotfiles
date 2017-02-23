@@ -6,4 +6,8 @@ text = green; default
 title = black; blue
 highlight = white; blue
 
+[GntWM::binding]
+# Disable Alt+Q for quitting
+a-q =
+
 # vim: ft=dosini
