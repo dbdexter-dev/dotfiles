@@ -123,7 +123,7 @@ set $workspace9 "9: "
 set $workspace10 "10: "
 
 assign [class="Vivaldi-stable"] $workspace3
-assign [class="telegram-desktop"] $workspace9
+assign [class="Midori"] $workspace3
 assign [class="Keepassx2"] $workspace10
 
 for_window [class="Peek"] floating enable
@@ -226,18 +226,22 @@ bar {
 # Lock screen
 bindsym $mod+Shift+x exec --no-startup-id i3lock -i ~/.config/i3/lockscreen.png && sleep 0.5 && xset dpms force off
 # bindsym $mod+Shift+x exec i3lock --color="$inactive_bg_color" -d -I 10
-bindsym Print exec --no-startup-id scrot ~/Screenshots/%Y-%m-%d-%H:%M_sshot.png
+bindsym Print exec --no-startup-id scrot ~/Screenshots/%Y-%m-%d-%H:%M:%S_sshot.png
 # Enable compton for added eye-candy
 # -i: inactive window alpha
 # -D: fade in/out fade step, in millisecs
 # -b: fork to background
 exec --no-startup-id compton -i 0.8 -D 4 -b
+
+# Start NetworkManager tray widget
 exec_always --no-startup-id nm-applet
 
-# Run web browser at boot
-exec --no-startup-id vivaldi-stable
-# Load terminal on first workspace
+# Load terminal on first workspace at boot
 exec --no-startup-id i3-sensible-terminal
-# exec telegram-desktop
+
+# Run web browser at boot
+# exec --no-startup-id vivaldi-stable
+exec --no-startup-id midori
+
 # Set wallpaper
 exec_always feh --bg-scale ~/.config/i3/.wallpapers/bg_dark.*
