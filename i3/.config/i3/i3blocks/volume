@@ -4,8 +4,8 @@
 STEP=5
 
 case $BLOCK_BUTTON in
-	1) exec pavucontrol ;;
-	2) exec pavucontrol ;;
+	1) i3-msg exec pavucontrol ;;
+	2) i3-msg exec pavucontrol ;;
 	3) amixer -q sset Master toggle ;;
 	4) amixer -q sset Master $STEP%+ ;;
 	5) amixer -q sset Master $STEP%- ;;

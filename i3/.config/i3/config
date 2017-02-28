@@ -21,6 +21,7 @@ set_from_resource $urgent_bg_color i3wm.ind_color #268bd2
 set_from_resource $unsel_text_color i3wm.unsel_textcolor #a3a19b
 
 set $rofidir ~/.config/rofi
+set $i3lock_params --textcolor=ffffff00 --insidecolor=ffffff1c --ringcolor=ffffff3e --linecolor=ffffff00 --keyhlcolor=00000080 --ringvercolor=00000000 --insidevercolor=0000001c --ringwrongcolor=00000055 --insidewrongcolor=0000001c
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
@@ -116,6 +117,7 @@ set $workspace10 "10: "
 
 assign [class="Vivaldi-stable"] $workspace3
 assign [class="Midori"] $workspace3
+assign [class="Firefox"] $workspace3
 assign [class="Keepassx2"] $workspace10
 
 # Disable borders and titles for every pane
@@ -199,7 +201,7 @@ client.focused_inactive	$bg_color			$inactive_bg_color	$text_color		$bar_bg_colo
 client.urgent			$urgent_bg_color	$urgent_bg_color	$text_color		$bar_bg_color
 
 # i3-gaps configuration
-gaps inner 7	# Gap between windows
+gaps inner 8	# Gap between windows
 gaps outer 2	# Additional border between windows and end-of-screen
 
 # Show i3blocks at the top of the screen
@@ -220,7 +222,7 @@ bar {
 }
 
 # Lock screen
-bindsym $mod+Shift+x exec --no-startup-id i3lock -i ~/.config/i3/lockscreen.png && sleep 0.5 && xset dpms force off
+bindsym $mod+Shift+x exec --no-startup-id i3lock $i3lock_params -i ~/.config/i3/lockscreen.png  && sleep 0.5 && xset dpms force off
 # bindsym $mod+Shift+x exec i3lock --color="$inactive_bg_color" -d -I 10
 bindsym Print exec --no-startup-id scrot ~/Screenshots/%Y-%m-%d-%H:%M:%S_sshot.png
 
@@ -234,7 +236,7 @@ exec --no-startup-id compton -i 0.8 -D 4 -b
 exec_always --no-startup-id nm-applet
 
 # Start up finch, a TUI chat client based on libpurple
-exec --no-startup-id "termite --class=\\"finch\\" -e finch"
+exec --no-startup-id "termite --class=\"finch\" -e finch"
 # Load terminal on first workspace at boot
 exec --no-startup-id i3-sensible-terminal
 

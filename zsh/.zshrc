@@ -37,7 +37,6 @@ export THEOS_DEVICE_IP=192.168.1.3
 export THEOS_DEVICE_PORT=31337
 
 #source ~/.zsh/git_prompt.zsh
-source ~/.zsh/theme_switch.zsh
 
 bindkey "^R" history-incremental-search-backward
 bindkey "[H" beginning-of-line
