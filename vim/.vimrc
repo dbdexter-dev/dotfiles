@@ -201,7 +201,7 @@ autocmd BufWritePre * %s/\s\+$//e
 
 augroup fileSpecificBindings
 	autocmd!
-	" Create a pdf of the current tex file
+	" Create a pdf of the current tex file with F5
 	autocmd FileType tex map <buffer> <F5> :PdfLatex<CR>
 	" Rebuild tags
 	autocmd FileType {c,cpp,h,hpp,nasm,asm,inc,objc} map <F5> :MakeTags<CR>

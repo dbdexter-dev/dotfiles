@@ -1,11 +1,10 @@
 #!/bin/bash
 
-# Actually a line in the edited version of the volume widget
 STEP=5
 
 case $BLOCK_BUTTON in
-	1) i3-msg exec pavucontrol ;;
-	2) i3-msg exec pavucontrol ;;
+	1) i3-msg exec pavucontrol > /dev/null ;;
+	2) i3-msg exec pavucontrol > /dev/null ;;
 	3) amixer -q sset Master toggle ;;
 	4) amixer -q sset Master $STEP%+ ;;
 	5) amixer -q sset Master $STEP%- ;;

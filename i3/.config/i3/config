@@ -112,19 +112,21 @@ set $workspace5 "5"
 set $workspace6 "6"
 set $workspace7 "7"
 set $workspace8 "8"
-set $workspace9 "9: "
+set $workspace9 "9: "
 set $workspace10 "10: "
 
 assign [class="Vivaldi-stable"] $workspace3
 assign [class="Midori"] $workspace3
 assign [class="Firefox"] $workspace3
 assign [class="Keepassx2"] $workspace10
+assign [class="Pidgin"] $workspace9
 
 # Disable borders and titles for every pane
 for_window [class="^.*"] border pixel 0
 for_window [class="Peek"] floating enable
 # Enable floating for man pages spawned by rofi
 for_window [class="rofi-window"] floating enable
+for_window [class="Pavucontrol"] floating enable; resize set 640 480
 
 # switch to workspace
 bindsym $mod+1 workspace $workspace1
@@ -235,10 +237,11 @@ exec --no-startup-id compton -i 0.8 -D 4 -b
 # Start NetworkManager tray widget
 exec_always --no-startup-id nm-applet
 
-# Start up finch, a TUI chat client based on libpurple
-exec --no-startup-id "termite --class=\"finch\" -e finch"
 # Load terminal on first workspace at boot
 exec --no-startup-id i3-sensible-terminal
+
+# Start up Pidgin
+exec --no-startup-id pidgin
 
 # Run web browser at boot
 # exec --no-startup-id vivaldi-stable
