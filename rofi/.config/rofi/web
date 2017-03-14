@@ -4,5 +4,4 @@
 QUERY=$(sed -e "s/ /+/g" <<< $@)
 
 xdg-open "https://www.duckduckgo.com/?q=$QUERY"
-i3-msg [class="Midori"] focus
 killall rofi

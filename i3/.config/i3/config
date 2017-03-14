@@ -51,7 +51,7 @@ bindsym $mod+Return exec --no-startup-id i3-sensible-terminal
 bindsym $mod+Shift+q kill
 
 # start rofi (a program launcher)
-bindsym $mod+d exec "rofi -show run -modi \\"run,man:$rofidir/man,theme:$rofidir/theme\\""
+bindsym $mod+d exec "rofi -show run -modi \\"run,man:$rofidir/man\\""
 bindsym mod1+Tab exec "rofi -show window -modi window"
 
 # change focus
@@ -234,9 +234,6 @@ bindsym Print exec --no-startup-id scrot ~/Screenshots/%Y-%m-%d-%H:%M:%S_sshot.p
 # -b: fork to background
 exec --no-startup-id compton -i 0.8 -D 4 -b
 
-# Start NetworkManager tray widget
-exec_always --no-startup-id nm-applet
-
 # Load terminal on first workspace at boot
 exec --no-startup-id i3-sensible-terminal
 
@@ -246,6 +243,3 @@ exec --no-startup-id pidgin
 # Run web browser at boot
 # exec --no-startup-id vivaldi-stable
 exec --no-startup-id $BROWSER
-
-# Set wallpaper
-exec_always feh --bg-scale ~/.config/i3/.wallpapers/bg_dark.*

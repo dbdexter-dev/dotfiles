@@ -156,7 +156,7 @@ endfunction
 
 " Read-Write status string
 function! LightLineRWStat()
-	let isReadonly = &ft !~? 'help' && &readonly ? "": ""
+	let isReadonly = &ft !~? 'help' && &readonly ? "": ""
 	let isModified = &ft =~ 'help\|vimfiler\|gundo' ? '' : &modified ? '[+]' : &modifiable ? '' : '[-]'
 	return isModified . isReadonly
 endfunction

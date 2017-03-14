@@ -22,8 +22,7 @@ if [[ -n $@ ]]; then
 	NUM=$(sed -e 's/[\(\)]//g' <<< $(cut -d" " -f2 <<< $1))
 	PAGE=$(cut -d" " -f1 <<< $1)
 
-	i3-msg exec "termite --class=\"rofi-window\" -e 'man $NUM $PAGE'"
-
+	herbstclient spawn termite -e "man $NUM $PAGE"
 	killall rofi
 else
 	cat $DBFILE
