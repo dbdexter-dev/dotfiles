@@ -1,5 +1,6 @@
 [colors]
 bg = ${xrdb:polybar.bgcolor}
+bg_alt = #a0000000
 fg = ${xrdb:polybar.textcolor}
 ind_color = ${xrdb:polybar.ind_color}
 active = ${xrdb:polybar.active_color}
@@ -13,6 +14,8 @@ foreground = ${colors.fg}
 ; Bar position offset
 offset-x = 0
 offset-y = 2
+border-right = 6
+border-left = 6
 ; Corner radius
 radius = 6.0
 
@@ -24,8 +27,8 @@ line-color = ${colors.active}
 padding = 3
 
 ; Fonts
-font-0 = "SFNS Display:style=Regular:size=11;0"
-font-1 = "FontAwesome:style=Regular:size=11;0"
+font-0 = "SFNS Display:style=Regular:size=11;1"
+font-1 = "FontAwesome:style=Regular:size=11;1"
 
 ; Module padding
 module-margin-left = 3
@@ -33,11 +36,13 @@ module-margin-right = 3
 ; Modules to display, defined below
 modules-left = ewmh
 modules-center = date
-modules-right = battery backlight volume
+modules-right = backlight volume battery
 
 ; Tray position and scale
-tray-position = right
-tray-scale = 1.0
+;tray-position = right
+;tray-scale = 1.0
+;tray-transparent = true
+;tray-detached = true
 
 [module/date]
 type = internal/date
@@ -55,6 +60,9 @@ type = internal/volume
 interval = 2.0
 format-volume-prefix = " "
 format-muted-prefix = " "
+click-left = herbstclient spawn pavucontrol
+scroll-up = herbstclient spawn pactl set-sink-volume 0 +5%
+scroll-down = herbstclient spawn pactl set-sink-volume 0 -5%
 
 [module/battery]
 type = internal/battery
@@ -73,7 +81,7 @@ animation-charging-3 = ""
 animation-charging-2 = ""
 animation-charging-1 = ""
 animation-charging-0 = ""
-animation-charging-framerate = 60
+animation-charging-framerate = 750
 
 [module/ewmh]
 type = internal/xworkspaces
@@ -83,15 +91,16 @@ enable-scroll = true
 label-active = %name%
 label-active-foreground = ${colors.fg}
 label-active-underline = ${colors.ind_color}
-label-active-padding = 3
+label-active-background = ${colors.bg_alt}
+label-active-padding = 1
 
 label-urgent = %name%
 label-urgent-foreground = ${colors.fg}
 label-urgent-underline = ${colors.urgent}
-label-urgent-padding = 3
+label-urgent-padding = 1
 
 label-occupied = %name%
-label-occpuied-padding = 3
+label-occpuied-padding = 1
 
 label-empty = %name%
 label-empty-padding = 1
