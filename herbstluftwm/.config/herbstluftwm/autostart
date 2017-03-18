@@ -133,7 +133,7 @@ hc set frame_gap 10
 
 hc attr theme.active.color '#bcbcbc'
 hc attr theme.normal.color '#212121'
-hc attr theme.urgent.color yellow
+hc attr theme.urgent.color '#ff9100'
 hc attr theme.inner_width 1
 hc attr theme.inner_color black
 hc attr theme.border_width 2

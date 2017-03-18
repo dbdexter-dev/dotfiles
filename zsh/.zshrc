@@ -45,7 +45,12 @@ bindkey "[5~" beginning-of-history
 bindkey "[6~" end-of-history
 bindkey "[3~" delete-char
 
-#Disable Ctrl+S, Ctrl+Q
+# Disable Ctrl+S, Ctrl+Q
 stty -ixon
+
+# Alert on command completion
+precmd() {
+	print -n '\a'
+}
 
 fortune | cowsay -f small.cow
