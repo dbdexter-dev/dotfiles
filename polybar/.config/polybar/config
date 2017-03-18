@@ -13,7 +13,7 @@ foreground = ${colors.fg}
 
 ; Bar position offset
 offset-x = 0
-offset-y = 2
+offset-y = 3
 border-right = 6
 border-left = 6
 ; Corner radius
@@ -25,6 +25,7 @@ line-color = ${colors.active}
 
 ; Padding at either side of the bar
 padding = 3
+;padding-right = 8
 
 ; Fonts
 font-0 = "SFNS Display:style=Regular:size=11;1"
@@ -41,7 +42,7 @@ modules-right = backlight volume battery
 ; Tray position and scale
 ;tray-position = right
 ;tray-scale = 1.0
-;tray-transparent = true
+;tray-transparent = false
 ;tray-detached = true
 
 [module/date]
@@ -60,6 +61,7 @@ type = internal/volume
 interval = 2.0
 format-volume-prefix = " "
 format-muted-prefix = " "
+
 click-left = herbstclient spawn pavucontrol
 scroll-up = herbstclient spawn pactl set-sink-volume 0 +5%
 scroll-down = herbstclient spawn pactl set-sink-volume 0 -5%
@@ -98,9 +100,6 @@ label-urgent = %name%
 label-urgent-foreground = ${colors.fg}
 label-urgent-underline = ${colors.urgent}
 label-urgent-padding = 1
-
-label-occupied = %name%
-label-occpuied-padding = 1
 
 label-empty = %name%
 label-empty-padding = 1
