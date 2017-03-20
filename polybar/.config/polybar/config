@@ -1,6 +1,6 @@
 [colors]
 bg = ${xrdb:polybar.bgcolor}
-bg_alt = #a0000000
+bg_alt = #c0000000
 fg = ${xrdb:polybar.textcolor}
 ind_color = ${xrdb:polybar.ind_color}
 active = ${xrdb:polybar.active_color}
@@ -102,9 +102,7 @@ label-urgent-underline = ${colors.urgent}
 label-urgent-padding = 1
 
 label-empty = %name%
+label-empty-foreground = ${colors.fg}
 label-empty-padding = 1
-
-label-unfocused = %name%
-label-unfocused-padding = 1
 
 ; vim: ft=dosini

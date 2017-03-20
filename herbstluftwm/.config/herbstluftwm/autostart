@@ -89,7 +89,7 @@ hc keybind $Mod-p pseudotile toggle
 # I.e. if there are two windows within a frame, the grid layout is skipped.
 hc keybind $Mod-space                                                           \
             or , and . compare tags.focus.curframe_wcount = 2                   \
-                     . cycle_layout +1 vertical horizontal max vertical grid    \
+                     . cycle_layout +1 vertical horizontal max grid				\
                , cycle_layout +1
 
 # mouse
@@ -185,9 +185,12 @@ done
 
 #+++++++++++ Custom window layouts ++++++++++++
 # Pidgin: 20% buddy list, rest to conversations
-hc load "9: "  '(split horizontal:0.2:1 (clients grid:0) (clients vertical:0))'
-hc rule class=Pidgin windowrole=buddy_list tag=9 index=0 focus=off
-hc rule class=Pidgin ! windowrole=buddy_list tag=9 index=1
+hc load "9: "  '(split horizontal:0.2:1 (clients grid:0) (clients max:0))'
+hc rule class=Pidgin windowrole=buddy_list tag=$tag_names[9] index=0 focus=off
+hc rule class=Pidgin ! windowrole=buddy_list tag=$tag_names[9] index=1
+
+# Firefox: workspace 3
+hc rule class=Firefox tag=$tag_names[3]
 
 #++++++++++ Reload all accessory functions ++++++++++
 hc spawn killall polybar
