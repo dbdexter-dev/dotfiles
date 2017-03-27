@@ -1,4 +1,4 @@
-let g:pathogen_disabled = [ 'syntastic' ]
+" let g:pathogen_disabled = [ 'syntastic' ]
 call pathogen#infect()
 
 " Syntax highlighting options

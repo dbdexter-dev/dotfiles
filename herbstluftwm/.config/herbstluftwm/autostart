@@ -108,6 +108,12 @@ hc keybind $Mod-i jumpto urgent
 # rofi
 hc keybind $Mod+d spawn rofi -show run -modi "run,man:~/.config/rofi/man,ssh"
 
+# screenshot
+hc keybind Print spawn scrot ~/Screenshots/%Y-%m-%d-%H:%M:%S_sshot.png
+
+# keybinding
+hc keybind $Mod+Shift+: spawn setxkbmap it
+
 # multimedia keys
 hc keybind XF86AudioMute spawn pactl set-sink-mute 0 toggle					# Toggle mute-unmute
 hc keybind XF86AudioLowerVolume spawn pactl set-sink-volume 0 -5%			# Lower volume
@@ -186,11 +192,12 @@ done
 #+++++++++++ Custom window layouts ++++++++++++
 # Pidgin: 20% buddy list, rest to conversations
 hc load "9: "  '(split horizontal:0.2:1 (clients grid:0) (clients max:0))'
-hc rule class=Pidgin windowrole=buddy_list tag=$tag_names[9] index=0 focus=off
-hc rule class=Pidgin ! windowrole=buddy_list tag=$tag_names[9] index=1
+hc rule class=Pidgin tag="9: "
+hc rule class=Pidgin windowrole=buddy_list tag="9: " index=0 focus=off
+hc rule class=Pidgin ! windowrole=buddy_list tag="9: " index=1
 
 # Firefox: workspace 3
-hc rule class=Firefox tag=$tag_names[3]
+hc rule class=Firefox tag="3: "
 
 #++++++++++ Reload all accessory functions ++++++++++
 hc spawn killall polybar

@@ -207,21 +207,21 @@ gaps inner 8	# Gap between windows
 gaps outer 2	# Additional border between windows and end-of-screen
 
 # Show i3blocks at the top of the screen
-bar {
-	i3bar_command i3bar -t
-	status_command i3blocks -c ~/.config/i3/i3blocks.conf
-	position top
-	mode dock
-	modifier $mod
-	tray_padding 0
-	colors {
-	   background $bar_bg_color
-	   separator $text_color
-	   focused_workspace	$text_color			$text_color			$bar_bg_color
-	   inactive_workspace	$bar_bg_color		$bar_bg_color		$text_color
-	   urgent_workspace		$urgent_bg_color	$urgent_bg_color	$bar_bg_color
-	}
-}
+#bar {
+	#i3bar_command i3bar -t
+	#status_command i3blocks -c ~/.config/i3/i3blocks.conf
+	#position top
+	#mode dock
+	#modifier $mod
+	#tray_padding 0
+	#colors {
+	   #background $bar_bg_color
+	   #separator $text_color
+	   #focused_workspace	$text_color			$text_color			$bar_bg_color
+	   #inactive_workspace	$bar_bg_color		$bar_bg_color		$text_color
+	   #urgent_workspace		$urgent_bg_color	$urgent_bg_color	$bar_bg_color
+	#}
+#}
 
 # Lock screen
 bindsym $mod+Shift+x exec --no-startup-id i3lock $i3lock_params -i ~/.config/i3/lockscreen.png  && sleep 0.5 && xset dpms force off

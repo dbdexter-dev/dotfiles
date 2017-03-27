@@ -25,7 +25,7 @@ line-color = ${colors.active}
 
 ; Padding at either side of the bar
 padding = 3
-;padding-right = 8
+padding-right = 8
 
 ; Fonts
 font-0 = "SFNS Display:style=Regular:size=11;1"
@@ -40,11 +40,11 @@ modules-center = date
 modules-right = backlight volume battery
 
 ; Tray position and scale
-;tray-position = right
-;tray-scale = 1.0
-;tray-transparent = false
-;tray-detached = true
-
+tray-position = right
+tray-scale = 1.0
+tray-transparent = true
+tray-detached = true
+;
 [module/date]
 type = internal/date
 interval = 2.0
@@ -55,6 +55,9 @@ type = internal/backlight
 interval = 5.0
 label =  %percentage%%
 card = intel_backlight
+scroll-up = herbstclient spawn xbacklight -inc 3
+scroll-down = herbstclient spawn xbacklight -dec 3
+
 
 [module/volume]
 type = internal/volume
@@ -69,8 +72,11 @@ scroll-down = herbstclient spawn pactl set-sink-volume 0 -5%
 [module/battery]
 type = internal/battery
 battery = BAT0
+
 format-discharging = <ramp-capacity> <label-discharging>
+
 format-charging = <animation-charging> <label-charging>
+format-charging-underline = ${colors.ind_color}
 
 ramp-capacity-4 = ""
 ramp-capacity-3 = ""
