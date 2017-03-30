@@ -76,7 +76,7 @@ battery = BAT0
 format-discharging = <ramp-capacity> <label-discharging>
 
 format-charging = <animation-charging> <label-charging>
-format-charging-underline = ${colors.ind_color}
+format-charging-underline = ${colors.urgent}
 
 ramp-capacity-4 = ""
 ramp-capacity-3 = ""

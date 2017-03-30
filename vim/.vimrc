@@ -1,10 +1,16 @@
 " let g:pathogen_disabled = [ 'syntastic' ]
+let g:ycm_server_python_interpreter = '/usr/bin/python2'
 call pathogen#infect()
 
 " Syntax highlighting options
 syntax on
 set background=dark
+
 colorscheme material
+"hi! Normal ctermbg=None
+"hi! LineNr ctermbg=None
+"hi! SpecialKey ctermbg=None
+"hi! CursorLineNr ctermfg=6
 
 
 " ++++++++ Custom Commands ++++++++
