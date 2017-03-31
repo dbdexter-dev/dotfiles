@@ -1,5 +1,5 @@
 [options]
-font = Inconsolata Patched 12
+font = InconsolataForPowerline Nerd Font 12
 cursor_shape = underline
 
 # Material design colors
@@ -10,7 +10,7 @@ foreground = #e0e0e0
 background = rgba(33, 33, 33, 0.85)
 
 # black
-color0  = #212121
+color0  = #313131
 color8  = #757575
 
 # red

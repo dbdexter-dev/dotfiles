@@ -1,6 +1,6 @@
 !Color scheme to be adopted by as many applications as possible
 #define BG #212121
-#define BAR #60000000
+#define BAR #7f6562
 #define TEXT #F5F5F5
 #define INACTIVE_BG #323232
 #define IND #00e676

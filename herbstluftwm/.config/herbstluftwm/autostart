@@ -110,9 +110,8 @@ hc keybind $Mod+d spawn rofi -show run -modi "run,man:~/.config/rofi/man,ssh"
 
 # screenshot
 hc keybind Print spawn scrot ~/Screenshots/%Y-%m-%d-%H:%M:%S_sshot.png
+hc keybind $Mod-Shift-x spawn i3lock --textcolor=ffffff00 --insidecolor=ffffff1c --ringcolor=ffffff3e --linecolor=ffffff00 --keyhlcolor=00000080 --ringvercolor=00000000 --insidevercolor=0000001c --ringwrongcolor=00000055 --insidewrongcolor=0000001c -i /home/dbdexter/.config/i3/lockscreen.png
 
-# keybinding
-hc keybind $Mod+Shift+: spawn setxkbmap it
 
 # multimedia keys
 hc keybind XF86AudioMute spawn pactl set-sink-mute 0 toggle					# Toggle mute-unmute
