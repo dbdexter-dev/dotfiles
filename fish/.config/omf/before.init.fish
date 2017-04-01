@@ -9,6 +9,7 @@ set -x theme_color_name "zenburn"
 
 alias ls='ls --color=auto'
 alias vi='vim'
+alias gdb='gdb -q'
 
 if status --is-login
 	set -g theme_powerline_fonts no
@@ -24,6 +25,7 @@ if status --is-interactive
 		echo -ne '\a'
 	end
 	set -g theme_nerd_fonts yes
+	set -g theme_display_vagrant yes
 end
 
 
