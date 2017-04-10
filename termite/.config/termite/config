@@ -7,7 +7,7 @@ cursor_shape = underline
 
 # special
 foreground = #e0e0e0
-background = rgba(33, 33, 33, 0.85)
+background = rgba(28, 33, 44, 0.85)
 
 # black
 color0  = #212121

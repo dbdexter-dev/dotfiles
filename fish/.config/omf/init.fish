@@ -17,7 +17,7 @@ set -g __color_repo_dirty               red black
 set -g __color_repo_staged              yellow black
 
 set -g __color_vi_mode_default          white black
-set -g __color_vi_mode_insert           green black
+set -g __color_vi_mode_insert           brgreen black
 set -g __color_vi_mode_visual           red black
 
 set -g __color_vagrant                  blue white --bold
