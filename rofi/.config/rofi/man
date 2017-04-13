@@ -18,12 +18,10 @@ if [[ ! -f $DBFILE || $LASTEDIT -gt $(date -r $DBFILE +%s) ]]; then
 fi
 
 if [[ -n $@ ]]; then
-
 	NUM=$(sed -e 's/[\(\)]//g' <<< $(cut -d" " -f2 <<< $1))
 	PAGE=$(cut -d" " -f1 <<< $1)
 
 	herbstclient spawn termite -e "man $NUM $PAGE"
-	killall rofi
 else
 	cat $DBFILE
 fi
