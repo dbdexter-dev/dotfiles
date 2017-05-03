@@ -6,6 +6,7 @@ set -x EDITOR "vim"
 set -x BROWSER "firefox"
 set -x TERMINAL "termite"
 set -x theme_color_name "zenburn"
+set -x XKB_DEFAULT_LAYOUT "dvorak"
 
 alias ls='ls --color=auto'
 alias vi='vim'

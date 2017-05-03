@@ -1,5 +1,5 @@
 [colors]
-bg = ${xrdb:polybar.bgcolor}
+bg = #80000000
 bg_alt = #c0000000
 fg = ${xrdb:polybar.textcolor}
 ind_color = ${xrdb:polybar.ind_color}
@@ -25,7 +25,7 @@ line-color = ${colors.active}
 
 ; Padding at either side of the bar
 padding = 3
-padding-right = 8
+padding-right = 12
 
 ; Fonts
 font-0 = "SFNS Display:style=Regular:size=11;1"
@@ -56,9 +56,6 @@ type = internal/backlight
 interval = 5.0
 label =  %percentage%%
 card = intel_backlight
-scroll-up = herbstclient spawn xbacklight -inc 3
-scroll-down = herbstclient spawn xbacklight -dec 3
-
 
 [module/volume]
 type = internal/volume
@@ -66,9 +63,8 @@ interval = 2.0
 format-volume-prefix = " "
 format-muted-prefix = " "
 
-click-left = herbstclient spawn pavucontrol
 scroll-up = herbstclient spawn pactl set-sink-volume 0 +5%
-scroll-down = herbstclient spawn pactl set-sink-volume 0 -5%
+scroll-down = herbstclient spawn pactl set-sink-volume 0 -5
 
 [module/battery]
 type = internal/battery

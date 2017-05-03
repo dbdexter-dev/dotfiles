@@ -62,7 +62,7 @@ hc keybind $Mod-Control-Up      resize up +$resizestep
 hc keybind $Mod-Control-Right   resize right +$resizestep
 
 # tags
-tag_names=( "1: " "2: " "3: " {4..8} "9: " "10: " )
+tag_names=( "1: " "2: " "3: " {4..8} "9: " "10: ")
 tag_keys=( {1..9} 0 )
 
 hc rename default "${tag_names[0]}" || true
@@ -106,7 +106,7 @@ hc keybind $Mod-c cycle
 hc keybind $Mod-i jumpto urgent
 
 # rofi
-hc keybind $Mod+d spawn rofi -show run -modi "run,man:~/.config/rofi/man,ssh"
+hc keybind $Mod+d spawn rofi -show run -modi "run,man:~/.config/rofi/man,window"
 
 # screenshot
 hc keybind Print spawn scrot ~/Screenshots/%Y-%m-%d-%H:%M:%S_sshot.png
@@ -164,12 +164,13 @@ hc unrule -F
 #hc rule class=XTerm tag=3 # move all xterms to tag 3
 hc rule focus=on # normally focus new clients
 #hc rule focus=off # normally do not focus new clients
-# give focus to most common terminals
-#hc rule class~'(.*[Rr]xvt.*|.*[Tt]erm|Konsole)' focus=on
-hc rule windowtype~'_NET_WM_WINDOW_TYPE_(DIALOG|UTILITY|SPLASH)' pseudotile=on
-hc rule windowtype='_NET_WM_WINDOW_TYPE_DIALOG' focus=on
+# move all the windows that should be floating to this monitor
+hc rule --windowtype~'_NET_WM_WINDOW_TYPE_(DIALOG|UTILITY|SPLASH)' --pseudotile=on --focus=on
+hc rule --windowtype='_NET_WM_WINDOW_TYPE_DIALOG' --focus=on
 hc rule windowtype~'_NET_WM_WINDOW_TYPE_(NOTIFICATION|DOCK|DESKTOP)' manage=off
 
+# create a new monitor for all floating dialogs
+# /home/dbdexter/.config/herbstluftwm/focusmonitor.sh
 # unlock, just to be sure
 hc unlock
 

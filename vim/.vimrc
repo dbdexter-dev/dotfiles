@@ -1,4 +1,3 @@
-" let g:pathogen_disabled = [ 'syntastic' ]
 "let g:pathogen_disabled = [ 'YouCompleteMe' ]
 let g:ycm_server_python_interpreter = '/usr/bin/python2'
 let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/third_party/ycmd/examples/.ycm_extra_conf.py'
