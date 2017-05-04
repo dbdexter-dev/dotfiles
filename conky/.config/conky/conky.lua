@@ -1,17 +1,15 @@
 require 'cairo'
 
-font = 'Source Sans Pro'
+font = 'SFNS Display'
 font_size = 24
 interline = 5
 clock_offset_x = 0
 red,green,blue = 1,1,1
-ring_red,ring_green,ring_blue = 0.4,0.75,0.7
 inactiveAlpha,activeAlpha = 0.2,1
 line_width = 5
 font_slant = CAIRO_FONT_SLANT_NORMAL
 font_face = CAIRO_FONT_WEIGHT_NORMAL
-ring_x = 100
-ring_y = 100
+ring_x = 275
 ring_radius = 50
 
 function conky_main()
@@ -29,14 +27,17 @@ function conky_main()
 	local updates = tonumber(conky_parse('${updates}'))
 	if updates > 1 then
 		cairo_select_font_face(cr, font, font_slant, font_face)
-		cairo_set_font_size(cr, font_size)
 		cairo_set_source_rgba(cr, red, green, blue, activeAlpha)
 		cairo_set_line_width(cr, line_width)
 		cairo_set_line_cap(cr, CAIRO_LINE_CAP_ROUND)
+
+		load_gauge(cr, ring_x, ring_radius+line_width, ring_radius)
+		temp_gauge(cr, ring_x, ring_radius+line_width+2*ring_radius, ring_radius-line_width)
+		mem_gauge(cr, ring_x, ring_radius+2*line_width+4*ring_radius, ring_radius-line_width)
+
+		cairo_set_font_size(cr, font_size)
 		cairo_move_to(cr, 0, 0)
 
-		cairo_set_source_rgba(cr, ring_red, ring_green, ring_blue, activeAlpha)
---		load_gauge(cr, ring_x, ring_y, ring_radius)
 		clock(cr)
 
 		cairo_stroke(cr)
@@ -48,20 +49,65 @@ function conky_main()
 
 end
 
---[[
 function load_gauge(cr, x, y, radius)
+	local scale = math.pi/4
 
-	local function radians(degrees)
-		return 2*math.pi*degrees/360
-	end
+	local minute1_angle = tonumber(conky_parse('${loadavg 1}'))*scale
+	local minute5_angle = tonumber(conky_parse('${loadavg 2}'))*scale
+	local minute15_angle = tonumber(conky_parse('${loadavg 3}'))*scale
+	local line_width = line_width*1.1
 
-	local end_angle = tonumber(conky_parse('${exec "cat /proc/loadavg | cut -d\" \" -f1"}'))
+	cairo_set_font_size(cr, 12)
+	cairo_move_to(cr, x-16, y)
+	cairo_show_text(cr, conky_parse('${loadavg 1}'))
 
+	cairo_set_source_rgba(cr, 0.39, 0.48, 0.24, activeAlpha)
 	cairo_move_to(cr, x, y-radius)
-	cairo_arc(cr, x, y, radius, radians(-90), radians(end_angle-90))
+	cairo_arc(cr, x, y, radius, -math.pi/2, (minute1_angle - math.pi/2))
+	cairo_stroke(cr)
+
+	cairo_set_source_rgba(cr, 0.3, 0.4, 0.21, activeAlpha)
+	cairo_move_to(cr, x, y-radius+line_width)
+	cairo_arc(cr, x, y, radius-line_width, -math.pi/2, (minute5_angle - math.pi/2))
+	cairo_stroke(cr)
+
+	cairo_set_source_rgba(cr, 0.26, 0.37, 0.17, activeAlpha)
+	cairo_move_to(cr, x, y-radius+2*line_width)
+	cairo_arc(cr, x, y, radius-2*line_width, -math.pi/2, (minute15_angle - math.pi/2))
 	cairo_stroke(cr)
 end
-]]
+
+function temp_gauge(cr, x, y, radius)
+	local temp = conky_parse('${hwmon temp 2}')
+	cairo_set_font_size(cr, 12)
+	cairo_set_source_rgba(cr, red, green, blue, activeAlpha)
+	cairo_move_to(cr, x-12, y)
+	cairo_show_text(cr, temp.."°C")
+
+	local temp_angle = temp/100*math.pi
+
+	cairo_set_source_rgba(cr, 0.8, 0.08, 0.22, activeAlpha)
+	cairo_move_to(cr, x, y-radius)
+	cairo_arc(cr, x, y, radius, -math.pi/2, (temp_angle - math.pi/2))
+	cairo_stroke(cr)
+end
+
+function mem_gauge(cr, x, y, radius)
+	local memperc = tonumber(conky_parse('${memperc}'))
+	cairo_set_font_size(cr, 12)
+	cairo_set_source_rgba(cr, red, green, blue, activeAlpha)
+	cairo_move_to(cr, x-20, y)
+	cairo_show_text(cr, conky_parse('${mem}'))
+
+	local mem_angle = memperc/100*math.pi
+
+	cairo_set_source_rgba(cr, 0.07, 0.62, 0.8, activeAlpha)
+	cairo_move_to(cr, x, y-radius)
+	cairo_arc(cr, x, y, radius, -math.pi/2, (mem_angle - math.pi/2))
+	cairo_stroke(cr)
+
+end
+
 function clock(cr)
 	local hour = tonumber(conky_parse('${exec date +"%I"}'))
 	local minute = tonumber(conky_parse('${exec date +"%M"}'))
@@ -80,7 +126,7 @@ function clock(cr)
 		quarter = true
 	elseif minute < 30 or minute >= 35 then
 		twenty = true
-		if minute >= 25 and minute <= 35 then
+		if minute >= 25 and minute < 40 then
 			five = true
 		end
 	else
