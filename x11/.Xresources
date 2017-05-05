@@ -3,7 +3,7 @@
 #define BAR #5c544f
 #define TEXT #F5F5F5
 #define INACTIVE_BG #323232
-#define IND #647B3D
+#define IND #7cb342
 #define UNSEL #909090
 #define URG #FF9100
 
