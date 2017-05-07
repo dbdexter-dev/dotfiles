@@ -12,11 +12,11 @@ font_face = CAIRO_FONT_WEIGHT_NORMAL
 ring_x,ring_y = 275, 0
 ring_radius = 50
 clock_x,clock_y = 0, 55
+
 load_max = 4
 temp_max = 100
-
-up_max = 300
-down_max = 3000
+up_max = 300	-- kb/s
+down_max = 3000	-- kb/s
 
 function conky_main()
 	if conky_window == nil then
@@ -74,7 +74,7 @@ function load_gauge(cr, x, y, radius)
 	local line_width = line_width*1.1
 
 	cairo_set_font_size(cr, smallfont_size)
-	cairo_move_to(cr, x-16, y)
+	cairo_move_to(cr, x-14, y)
 	cairo_show_text(cr, conky_parse('${loadavg 1}'))
 
 	cairo_set_source_rgba(cr, 0.55, 0.76, 0.29, activeAlpha)
@@ -97,7 +97,7 @@ function temp_gauge(cr, x, y, radius)
 	local temp = tonumber(conky_parse('${hwmon 1 temp 1}'))
 	cairo_set_font_size(cr, smallfont_size)
 	cairo_set_source_rgba(cr, red, green, blue, activeAlpha)
-	cairo_move_to(cr, x-18, y)
+	cairo_move_to(cr, x-17, y)
 	cairo_show_text(cr, temp.."°C")
 
 	local temp_angle = clamp(temp, temp_max)/temp_max*math.pi
