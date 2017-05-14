@@ -107,6 +107,7 @@ hc keybind $Mod-i jumpto urgent
 
 # rofi
 hc keybind $Mod+d spawn rofi -show run -modi "run,man:~/.config/rofi/man,window"
+hc keybind XF86Search spawn rofi -show youtube -modi "youtube:~/.config/rofi/youtube"
 
 # screenshot
 hc keybind Print spawn scrot ~/Screenshots/%Y-%m-%d-%H:%M:%S_sshot.png

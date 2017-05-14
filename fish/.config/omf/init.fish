@@ -24,3 +24,5 @@ set -g __color_vagrant                  blue white --bold
 set -g __color_username                 brblack blue
 set -g __color_rvm                      brmagenta black --bold
 set -g __color_virtualfish              brblue black --bold
+
+fortune | cowsay -f small.cow

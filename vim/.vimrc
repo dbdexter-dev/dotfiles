@@ -27,6 +27,7 @@ command! PdfLatex !pdflatex %
 let mapleader=","
 map Q <nop>
 map <up> <nop>
+map <F1> <nop>
 " Close buffer
 map <down> :bp<bar>sp<bar>bn<bar>bd<CR>
 " Next buffer
@@ -203,6 +204,11 @@ augroup autoFileRecognition
 	autocmd!
 	autocmd BufRead,BufNewFile *.xm set filetype=objc
 	autocmd BufRead,BufNewFile *.nasm,*.asm set filetype=nasm
+
+	 " I shouldn't have to do this, really, but apparently
+	 " vim thinks he is smarter than me and sets tabstop to 8
+	 " for python scripts
+	autocmd FileType python setlocal tabstop=4
 augroup END
 
 " Automatically remove trailing space at the end of lines
