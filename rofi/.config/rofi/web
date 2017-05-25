@@ -3,5 +3,5 @@
 [[ -n $@ ]] || exit
 QUERY=$(sed -e "s/ /+/g" <<< $@)
 
-xdg-open "https://www.duckduckgo.com/?q=$QUERY"
+xdg-open "https://www.google.com/search?q=$QUERY"
 killall rofi

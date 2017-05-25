@@ -27,6 +27,9 @@ if status --is-interactive
 	end
 	set -g theme_nerd_fonts yes
 	set -g theme_display_vagrant yes
+	set -g theme_display_vi no
+	set -g theme_display_date no
+	set -g theme_display_user yes
 end
 
 

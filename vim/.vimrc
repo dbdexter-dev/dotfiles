@@ -209,6 +209,7 @@ augroup autoFileRecognition
 	 " vim thinks he is smarter than me and sets tabstop to 8
 	 " for python scripts
 	autocmd FileType python setlocal tabstop=4
+	autocmd FileType python setlocal noexpandtab
 augroup END
 
 " Automatically remove trailing space at the end of lines

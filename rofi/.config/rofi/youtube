@@ -1,16 +1,17 @@
 #!/bin/bash
 
 num_re='^[0-9]+$'
-[[ -n $@ ]] || echo "Enter search keywords"
+#[[ -n $@ ]] || echo "Enter search keywords"
 [[ $1 == "" ]] && exit
 
 idx=$(echo $1 | cut -d" " -f1)
-if ! [[ $idx =~ $num_re ]]; then
+minutes=$(echo $1 | rev | cut -d":" -f1)
+if ! [[ $idx =~ $num_re && $minutes =~ $num_re ]]; then
 	ENTRIES=$(echo q | mpsyt .$@ | grep -B21 'Search results for' | head -n20)
 	echo "$ENTRIES"
 else
-	killall xwinwrap
 	name=$(echo $1 | cut -d" " -f2- | rev | cut -d" " -f2- | rev)
-	link=$(echo i1 | mpsyt .$name | grep -i link | awk '{print $3}')
-	herbstclient spawn xwinwrap -b -ov -fs -- mpv "$link" --wid WID
+	link=$(echo i1 | mpsyt .$name | grep "Link       :" | tail -1 | awk '{print $3}')
+	killall xwinwrap
+	herbstclient spawn nice -n15 xwinwrap -b -ov -fs -- mpv "$link" -wid WID
 fi
