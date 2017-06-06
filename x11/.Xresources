@@ -3,9 +3,9 @@
 #define BAR #5c544f
 #define TEXT #F5F5F5
 #define INACTIVE_BG #323232
-#define IND #ff6f26
+#define IND #8e93a6
 #define UNSEL #909090
-#define URG #ff2a68
+#define URG #35e902
 
 i3wm.bgcolor: BG
 i3wm.textcolor: TEXT

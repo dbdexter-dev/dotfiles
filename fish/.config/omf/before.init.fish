@@ -7,8 +7,9 @@ set -x BROWSER "firefox"
 set -x TERMINAL "termite"
 set -x theme_color_name "zenburn"
 set -x XKB_DEFAULT_LAYOUT "dvorak"
+set -x LS_COLORS (ls_colors_generator)
 
-alias ls='ls --color=auto'
+alias ls='ls-i --group-directories-first --color=auto -w (tput cols)'
 alias vi='vim'
 alias gdb='gdb -q'
 

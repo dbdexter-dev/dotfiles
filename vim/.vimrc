@@ -1,11 +1,11 @@
-"let g:pathogen_disabled = [ 'YouCompleteMe' ]
+"let g:pathogen_disabled = [ 'YouCompleteMe', 'Syntastic' ]
 let g:ycm_server_python_interpreter = '/usr/bin/python2'
 let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/third_party/ycmd/examples/.ycm_extra_conf.py'
 call pathogen#infect()
 
 " Syntax highlighting options
 syntax on
-filetype plugin on
+filetype plugin indent on
 set omnifunc=syntaxcomplete#Complete
 set background=dark
 
@@ -23,7 +23,7 @@ command! PdfLatex !pdflatex %
 
 
 " ++++++++ Key Mappings ++++++++
-" Set leader to '.'
+" Set leader to ','
 let mapleader=","
 map Q <nop>
 map <up> <nop>
