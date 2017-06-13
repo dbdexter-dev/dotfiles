@@ -1,6 +1,6 @@
 [colors]
-bg = #80000000
-bg_alt = #c0000000
+bg = #80002b36
+bg_alt = #c0002b36
 fg = ${xrdb:polybar.textcolor}
 ind_color = ${xrdb:polybar.ind_color}
 active = ${xrdb:polybar.active_color}

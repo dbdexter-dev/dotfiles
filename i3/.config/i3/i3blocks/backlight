@@ -3,8 +3,8 @@
 # to turn the backlight completely off
 
 BACKLIGHT=$(xbacklight -get)
-SMALL_STEP=2
-LARGE_STEP=5
+SMALL_STEP=3
+LARGE_STEP=7
 STEP_THR=20
 
 if [[ $1 == "up" ]]; then

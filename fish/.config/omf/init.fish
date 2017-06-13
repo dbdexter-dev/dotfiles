@@ -1,6 +1,6 @@
 set -g theme_color_scheme 'user'
 
-set ruby 880e4f
+set ruby red
 
 set -g __color_initial_segment_exit     brwhite red --bold
 set -g __color_initial_segment_su       brwhite green --bold

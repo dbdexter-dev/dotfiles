@@ -26,6 +26,11 @@ if status --is-interactive
 	function bell_on_completion --on-event fish_prompt
 		echo -ne '\a'
 	end
+
+	function reload-config --on-variable __reload_config
+		source ~/.config/omf/init.fish
+	end
+
 	set -g theme_nerd_fonts yes
 	set -g theme_display_vagrant yes
 	set -g theme_display_vi no

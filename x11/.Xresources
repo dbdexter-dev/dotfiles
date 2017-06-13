@@ -1,11 +1,11 @@
 !Color scheme to be adopted by as many applications as possible
-#define BG #212121
+#define BG #073642
 #define BAR #5c544f
 #define TEXT #F5F5F5
-#define INACTIVE_BG #323232
-#define IND #8e93a6
+#define INACTIVE_BG #002b36
+#define IND #2aa198
 #define UNSEL #909090
-#define URG #35e902
+#define URG #b58900
 
 i3wm.bgcolor: BG
 i3wm.textcolor: TEXT
