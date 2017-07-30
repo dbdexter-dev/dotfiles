@@ -9,7 +9,7 @@ set -x theme_color_name "zenburn"
 set -x XKB_DEFAULT_LAYOUT "dvorak"
 set -x LS_COLORS (ls_colors_generator)
 
-alias ls='ls-i --color=auto --group-directories-first'
+alias ls='ls-i --color=auto'
 alias vi='vim'
 alias gdb='gdb -q'
 

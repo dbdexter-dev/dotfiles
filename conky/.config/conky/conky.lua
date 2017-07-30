@@ -37,10 +37,10 @@ function conky_main()
 		cairo_set_line_width(cr, line_width)
 		cairo_set_line_cap(cr, CAIRO_LINE_CAP_ROUND)
 
-		load_gauge(cr, ring_x, ring_y+ring_radius+line_width, ring_radius)
-		temp_gauge(cr, ring_x, ring_y+ring_radius+line_width+2*ring_radius, ring_radius-line_width)
-		mem_gauge(cr, ring_x, ring_y+ring_radius+2*line_width+4*ring_radius, ring_radius-line_width)
-		net_gauge(cr, ring_x, ring_y+ring_radius+4*line_width+6*ring_radius, ring_radius)
+--		load_gauge(cr, ring_x, ring_y+ring_radius+line_width, ring_radius)
+--		temp_gauge(cr, ring_x, ring_y+ring_radius+line_width+2*ring_radius, ring_radius-line_width)
+--		mem_gauge(cr, ring_x, ring_y+ring_radius+2*line_width+4*ring_radius, ring_radius-line_width)
+--		net_gauge(cr, ring_x, ring_y+ring_radius+4*line_width+6*ring_radius, ring_radius)
 
 		cairo_set_font_size(cr, smallfont_size)
 	end
