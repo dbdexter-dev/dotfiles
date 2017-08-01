@@ -2,23 +2,23 @@
 # Checks backlight before decreasing it in order not
 # to turn the backlight completely off
 
-BACKLIGHT=$(xbacklight -get)
+BACKLIGHT=$(light -G)
 SMALL_STEP=3
 LARGE_STEP=7
 STEP_THR=20
 
 if [[ $1 == "up" ]]; then
 	if [[ $BACKLIGHT -lt $STEP_THR ]]; then
-		xbacklight -inc $SMALL_STEP
+		light -A $SMALL_STEP
 	else
-		xbacklight -inc $LARGE_STEP
+		light -A $LARGE_STEP
 	fi
 else
 	if [[ $BACKLIGHT -gt $SMALL_STEP ]]; then
 		if [[ $BACKLIGHT -lt $STEP_THR ]]; then
-			xbacklight -dec $SMALL_STEP
+			light -U $SMALL_STEP
 		else
-			xbacklight -dec $LARGE_STEP
+			light -U $LARGE_STEP
 		fi
 	fi
 fi
