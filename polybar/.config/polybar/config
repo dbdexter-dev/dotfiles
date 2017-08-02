@@ -41,7 +41,7 @@ module-margin-left = 3
 module-margin-right = 3
 ; Modules to display, defined below
 modules-left = ewmh
-modules-center = date
+modules-center = xwindow
 modules-right = backlight volume battery
 
 ; Tray position and scale
@@ -55,6 +55,12 @@ tray-offset-x = -4
 type = internal/date
 interval = 2.0
 date = "%a, %b %d - %H:%M"
+
+[module/xwindow]
+type = internal/xwindow
+format-foreground = ${colors.fg}
+format-padding = 4
+label-maxlen = 100
 
 [module/backlight]
 type = internal/backlight
