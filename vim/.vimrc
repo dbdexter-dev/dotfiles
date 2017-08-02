@@ -9,7 +9,7 @@ filetype plugin indent on
 set omnifunc=syntaxcomplete#Complete
 set background=dark
 
-colorscheme solarized
+colorscheme material
 hi! Normal ctermbg=None
 hi! LineNr ctermbg=None cterm=Bold
 hi! CursorLineNr ctermfg=3

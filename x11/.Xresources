@@ -1,9 +1,9 @@
 !Color scheme to be adopted by as many applications as possible
-#define BG #073642
+#define BG #2e3440
 #define BAR #5c544f
-#define TEXT #F5F5F5
-#define INACTIVE_BG #002b36
-#define IND #2aa198
+#define TEXT #ffffff
+#define INACTIVE_BG #283038
+#define IND #50fa7b
 #define UNSEL #909090
 #define URG #b58900
 

@@ -6,39 +6,39 @@ cursor_shape = underline
 [colors]
 
 # special
-foreground = #eee8d5
-background = rgba(0, 43, 54, 0.85)
+foreground = #eeeeee
+background = rgba(46, 52, 64, 0.95)
 
 # black
-color0  = #073642
-color8  = #578090
+color0  = #263238
+color8  = #909090
 
 # red
-color1  = #dc322f
-color9  = #cb4b16
+color1  = #f44336
+color9  = #ff1744
 
 # green
-color2  = #859900
-color10 = #95a910
+color2  = #4caf50
+color10 = #8bc34a
 
 # yellow
-color3  = #b58900
-color11 = #c59910
+color3  = #ffc107
+color11 = #ffea00
 
 # blue
-color4  = #268bd2
-color12 = #369bdf
+color4  = #2196f3
+color12 = #03a9f4
 
 # magenta
-color5  = #d33682
-color13 = #df4692
+color5  = #e040fb
+color13 = #d500f9
 
 # cyan
-color6  = #2aa198
-color14 = #3ab1a8
+color6  = #00bcd4
+color14 = #00e5ff
 
 # white
-color7  = #93a1a1
-color15 = #fdf6e3
+color7  = #cccccc
+color15 = #ffffff
 
 # vim: ft=dosini

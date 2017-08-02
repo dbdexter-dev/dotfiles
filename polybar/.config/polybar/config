@@ -1,6 +1,5 @@
 [colors]
-bg = #80002b36
-bg_alt = #c0002b36
+bg = #2e3440
 fg = ${xrdb:polybar.textcolor}
 ind_color = ${xrdb:polybar.ind_color}
 active = ${xrdb:polybar.active_color}
@@ -10,26 +9,32 @@ urgent = ${xrdb:polybar.urgent}
 ; Background and foreground colors
 background = ${colors.bg}
 foreground = ${colors.fg}
+height = 26
 
 ; Bar position offset
 offset-x = 0
 offset-y = 3
-border-right = 6
-border-left = 6
+border-right-size = 6
+border-left-size = 6
+border-top-size = 2
+border-top-color = ${colors.bg}
+border-bottom-size = 2
+border-bottom-color = ${colors.bg}
 ; Corner radius
-radius = 6.0
+radius = 2
 
 ; Underline size and color
 line-size = 3
 line-color = ${colors.active}
 
 ; Padding at either side of the bar
-padding = 3
+padding = 2
 padding-right = 15
 
 ; Fonts
-font-0 = "SFNS Display:style=Regular:size=11;1"
-font-1 = "FontAwesome:style=Regular:size=11;1"
+font-0 = "SFNS Display:style=Regular:size=12;1"
+font-1 = "Noto Sans CJK JP:style=Regular:size=11;1"
+font-2 = "FontAwesome:style=Regular:size=11;1"
 
 ; Module padding
 module-margin-left = 3
@@ -94,9 +99,9 @@ enable-click = true
 enable-scroll = true
 
 label-active = %name%
-label-active-foreground = ${colors.fg}
+label-active-foreground = ${colors.bg}
 label-active-underline = ${colors.ind_color}
-label-active-background = ${colors.bg_alt}
+label-active-background = ${colors.ind_color}
 label-active-padding = 1
 
 label-urgent = %name%
@@ -107,5 +112,6 @@ label-urgent-padding = 1
 label-empty = %name%
 label-empty-foreground = ${colors.fg}
 label-empty-padding = 1
+
 
 ; vim: ft=dosini
