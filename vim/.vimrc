@@ -1,6 +1,6 @@
 "let g:pathogen_disabled = [ 'YouCompleteMe', 'Syntastic' ]
 let g:ycm_server_python_interpreter = '/usr/bin/python2'
-let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/third_party/ycmd/examples/.ycm_extra_conf.py'
+let g:ycm_global_ycm_extra_conf = '/usr/share/vim/vimfiles/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'
 call pathogen#infect()
 
 " Syntax highlighting options
@@ -19,6 +19,7 @@ hi! SpecialKey ctermbg=None
 " ++++++++ Custom Commands ++++++++
 command! MakeTags !ctags -R .
 command! PdfLatex !pdflatex %
+cmap W w !sudo tee > /dev/null %
 
 
 

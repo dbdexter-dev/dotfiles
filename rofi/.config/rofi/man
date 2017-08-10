@@ -21,7 +21,7 @@ if [[ -n $@ ]]; then
 	NUM=$(sed -e 's/[\(\)]//g' <<< $(cut -d" " -f2 <<< $1))
 	PAGE=$(cut -d" " -f1 <<< $1)
 
-	herbstclient spawn termite -e "man $NUM $PAGE"
+	herbstclient spawn termite -t "man $PAGE" -e "man $NUM $PAGE"
 else
 	cat $DBFILE
 fi

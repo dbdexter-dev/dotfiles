@@ -1,6 +1,6 @@
 [colors]
-bg = #2e3440
-fg = ${xrdb:polybar.textcolor}
+bg = ${xrdb:polybar.bg_color}
+fg = ${xrdb:polybar.text_color}
 ind_color = ${xrdb:polybar.ind_color}
 active = ${xrdb:polybar.active_color}
 urgent = ${xrdb:polybar.urgent}
@@ -14,18 +14,18 @@ height = 26
 ; Bar position offset
 offset-x = 0
 offset-y = 3
-border-right-size = 6
-border-left-size = 6
+border-right-size = 10
+border-left-size = 10
 border-top-size = 2
 border-top-color = ${colors.bg}
 border-bottom-size = 2
 border-bottom-color = ${colors.bg}
 ; Corner radius
-radius = 2
+; radius = 2
 
 ; Underline size and color
 line-size = 3
-line-color = ${colors.active}
+line-color = ${colors.ind_color}
 
 ; Padding at either side of the bar
 padding = 2
@@ -33,16 +33,16 @@ padding-right = 15
 
 ; Fonts
 font-0 = "SFNS Display:style=Regular:size=12;1"
-font-1 = "Noto Sans CJK JP:style=Regular:size=11;1"
-font-2 = "FontAwesome:style=Regular:size=11;1"
+font-1 = "Noto Sans CJK JP:style=Regular:size=11;2"
+font-2 = "FontAwesome:style=Regular:size=11;2"
 
 ; Module padding
-module-margin-left = 3
-module-margin-right = 3
+module-margin-left = 2
+module-margin-right = 2
 ; Modules to display, defined below
-modules-left = ewmh
+modules-left = hlwm
 modules-center = xwindow
-modules-right = backlight volume battery
+modules-right = battery date
 
 ; Tray position and scale
 tray-position = right
@@ -50,11 +50,18 @@ tray-scale = 1.0
 tray-transparent = false
 tray-detached = true
 tray-offset-x = -4
-;
+
 [module/date]
 type = internal/date
 interval = 2.0
-date = "%a, %b %d - %H:%M"
+
+date = " "
+date-alt = "%a, %b %d -"
+
+time = "%H:%M"
+time-alt = "%H:%M"
+
+label = %date% %time%
 
 [module/xwindow]
 type = internal/xwindow
@@ -71,8 +78,13 @@ card = intel_backlight
 [module/volume]
 type = internal/volume
 interval = 2.0
-format-volume-prefix = " "
-format-muted-prefix = " "
+
+format-volume = <ramp-volume>
+format-muted-prefix = " "
+ramp-volume-0 = ""
+ramp-volume-1 = ""
+ramp-volume-2 = ""
+ramp-volume-3 = ""
 
 scroll-up = herbstclient spawn pactl set-sink-volume 0 +5%
 scroll-down = herbstclient spawn pactl set-sink-volume 0 -5
@@ -84,40 +96,45 @@ battery = BAT0
 format-discharging = <ramp-capacity> <label-discharging>
 
 format-charging = <animation-charging> <label-charging>
-format-charging-underline = ${colors.ind_color}
 
-ramp-capacity-4 = ""
-ramp-capacity-3 = ""
-ramp-capacity-2 = ""
-ramp-capacity-1 = ""
-ramp-capacity-0 = ""
+ramp-capacity-4 = " "
+ramp-capacity-3 = " "
+ramp-capacity-2 = " "
+ramp-capacity-1 = " "
+ramp-capacity-0 = " "
 
-animation-charging-4 = ""
-animation-charging-3 = ""
-animation-charging-2 = ""
-animation-charging-1 = ""
-animation-charging-0 = ""
+animation-charging-4 = " "
+animation-charging-3 = " "
+animation-charging-2 = " "
+animation-charging-1 = " "
+animation-charging-0 = " "
 animation-charging-framerate = 750
 
-[module/ewmh]
+[module/hlwm]
 type = internal/xworkspaces
 enable-click = true
 enable-scroll = true
 
 label-active = %name%
 label-active-foreground = ${colors.bg}
-label-active-underline = ${colors.ind_color}
+#label-active-underline = ${colors.ind_color}
 label-active-background = ${colors.ind_color}
 label-active-padding = 1
 
 label-urgent = %name%
 label-urgent-foreground = ${colors.fg}
+label-urgent-background = ${colors.bg}
 label-urgent-underline = ${colors.urgent}
 label-urgent-padding = 1
 
 label-empty = %name%
 label-empty-foreground = ${colors.fg}
 label-empty-padding = 1
+
+[module/redshift]
+type = custom/script
+interval = 5
+exec = ~/.config/polybar/redshift.sh
 
 
 ; vim: ft=dosini

@@ -15,7 +15,7 @@ color8  = #909090
 
 # red
 color1  = #f44336
-color9  = #ff1744
+color9  = #ef5350
 
 # green
 color2  = #4caf50
@@ -27,11 +27,11 @@ color11 = #ffea00
 
 # blue
 color4  = #2196f3
-color12 = #03a9f4
+color12 = #42a5f5
 
 # magenta
-color5  = #e040fb
-color13 = #d500f9
+color5  = #ab47bc
+color13 = #ba68c8
 
 # cyan
 color6  = #00bcd4

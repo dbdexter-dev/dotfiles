@@ -2,7 +2,7 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-  export ZSH=/home/dbdexter/.oh-my-zsh
+export ZSH=/home/dbdexter/.oh-my-zsh
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
@@ -93,4 +93,10 @@ export BROWSER="firefox"
 alias ls="ls --color=auto"
 alias vi="vim"
 alias gdb="gdb -q"
-alias cd="cd -P"	# When cd-ing into a symlink, cd into the directory the link is pointing to
+#alias cd="cd -P"	# When cd-ing into a symlink, cd into the directory the link is pointing to
+
+precmd()
+{
+	print -n '\a'
+}
+
