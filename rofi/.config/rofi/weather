@@ -1,0 +1,17 @@
+#!/bin/bash
+cityfile=~/.config/rofi/cities.txt
+
+if [[ -z $1 ]]; then
+	cat $cityfile
+	exit
+fi
+
+grep -qs $1 $cityfile
+if [[ $? -ne 0 ]]; then
+	if [[ $1 != "" ]]; then
+		echo $1 >> $cityfile
+	fi
+fi
+
+herbstclient spawn termite -t "herbstweather" -e "/home/dbdexter/.config/rofi/weather_helper.sh $@"
+killall rofi

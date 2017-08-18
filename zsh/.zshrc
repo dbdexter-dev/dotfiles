@@ -95,8 +95,8 @@ alias vi="vim"
 alias gdb="gdb -q"
 #alias cd="cd -P"	# When cd-ing into a symlink, cd into the directory the link is pointing to
 
-precmd()
-{
-	print -n '\a'
+command_not_found_handler() {
+	# Weeb shit right here
+	echo -e "ばか！「$1」わ何ですか？" >&2
+	return 127
 }
-
