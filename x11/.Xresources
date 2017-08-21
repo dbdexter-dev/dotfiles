@@ -31,3 +31,42 @@ rofi.width: 500
 
 rofi.kb-mode-next:		Tab
 rofi.kb-mode-previous:	Control+Tab
+
+Xft.antialias: 1
+Xft.dpi: 96
+Xft.hinting: 1
+Xft.hintstyle: hintfull
+
+URxvt.saveLines: 1000
+URxvt.secondaryScreen: 1
+URxvt.secondaryScroll: 0
+URxvt.inputMethod: ibus
+URxvt.predictType: OverTheSpot
+URxvt.font:	xft:InconsolataForPowerline Nerd Font:size=12:antialias=true:hintstyle=hintfull, \
+			xft:Kochi Gothic:size=12:antialias=true, \
+			xft:FontAwesome:style=Regular:pixelsize=16:antialias=true
+URxvt.letterSpace: -1
+URxvt.scrollBar: false
+
+URxvt.cursorUnderline: true
+URxvt.cursorBlink: true
+
+URxvt.background: BG
+URxvt.foreground: TEXT
+
+URxvt.color0:	#263238
+URxvt.color8:	#909090
+URxvt.color1:	#f44336
+URxvt.color9:	#ef5350
+URxvt.color2:	#4caf50
+URxvt.color10:	#8bc34a
+URxvt.color3:	#ffc107
+URxvt.color11:	#ffea00
+URxvt.color4:	#2196f3
+URxvt.color12:	#42a5f5
+URxvt.color5:	#ab47bc
+URxvt.color13:	#ba68c8
+URxvt.color6:	#00bcd4
+URxvt.color14:	#00e5ff
+URxvt.color7:	#cccccc
+URxvt.color15:	#ffffff

@@ -65,6 +65,7 @@ hc keybind $Mod-Control-Down    resize down +$resizestep
 hc keybind $Mod-Control-Up      resize up +$resizestep
 hc keybind $Mod-Control-Right   resize right +$resizestep
 
+
 # tags
 tag_names=( " 一 " " 二 " " 三 " " 四 " " 五 " " 六 " ) #" 七 " " 八 " " 九 " " 十 ")
 tag_keys=( {1..6} )
@@ -78,6 +79,7 @@ for i in ${!tag_names[@]} ; do
         hc keybind "$Mod-Shift-$key" move_index "$i"
     fi
 done
+
 
 # cycle through tags
 hc keybind $Mod-period use_index +1 --skip-visible
@@ -93,7 +95,7 @@ hc keybind $Mod-p pseudotile toggle
 # I.e. if there are two windows within a frame, the grid layout is skipped.
 hc keybind $Mod-space                                                           \
             or , and . compare tags.focus.curframe_wcount = 2                   \
-                     . cycle_layout +1 horizontal vertical max grid				\
+                     . cycle_layout +1 vertical horizontal max grid				\
                , cycle_layout +1
 
 # mouse
@@ -204,6 +206,7 @@ done
 # Fuck Pidgin
 # Firefox: workspace 3
 hc rule class=Firefox tag="${tag_names[2]}"
+hc set default_frame_layout 1
 
 #++++++++++ Reload all accessory functions ++++++++++
 hc spawn killall polybar

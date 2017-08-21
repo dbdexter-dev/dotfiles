@@ -1,4 +1,4 @@
-"let g:pathogen_disabled = [ 'YouCompleteMe', 'Syntastic' ]
+let g:pathogen_disabled = [ 'YouCompleteMe' ]
 let g:ycm_server_python_interpreter = '/usr/bin/python2'
 let g:ycm_global_ycm_extra_conf = '/usr/share/vim/vimfiles/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'
 call pathogen#infect()
@@ -112,7 +112,7 @@ set pastetoggle=<F2>
 
 " View whitespace as meta-characters
 set list
-set listchars=tab:⸱ 
+set listchars=tab:· 
 
 " ++++++++ Lightline configuration ++++++++
 let g:lightline = {

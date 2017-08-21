@@ -84,11 +84,7 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 #
-export THEOS="/opt/theos"
-export PATH="$HOME/.local":$PATH:$THEOS/bin
-export EDITOR="vim"
-export TERMINAL="termite"
-export BROWSER="firefox"
+bindkey -v
 
 alias ls="ls --color=auto"
 alias vi="vim"
@@ -97,6 +93,6 @@ alias gdb="gdb -q"
 
 command_not_found_handler() {
 	# Weeb shit right here
-	echo -e "ばか！「$1」わ何ですか？" >&2
+	echo -e "バカ！「$1」わ何ですか？" >&2
 	return 127
 }

@@ -1,0 +1,44 @@
+[options]
+font = InconsolataForPowerline Nerd Font 12
+cursor_shape = underline
+
+# Material design colors
+[colors]
+
+# special
+foreground = #eeeeee
+background = rgba(46, 52, 64, 0.95)
+
+# black
+color0  = #263238
+color8  = #909090
+
+# red
+color1  = #3d5afe
+color9  = #536dfe
+
+# green
+color2  = #26a69a
+color10 = #4db6ac
+
+# yellow
+color3  = #00bcd4
+color11 = #00e5ff
+
+# blue
+color4  = #0288d1
+color12 = #03a9f4
+
+# magenta
+color5  = #ab47bc
+color13 = #ba68c8
+
+# cyan
+color6  = #7986cb
+color14 = #9fa8da
+
+# white
+color7  = #cccccc
+color15 = #ffffff
+
+# vim: ft=dosini
