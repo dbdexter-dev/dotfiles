@@ -6,12 +6,13 @@ if [[ -z $1 ]]; then
 	exit
 fi
 
-grep -qs $1 $cityfile
+# Add city to the list if it's not present
+grep -i -qs $1 $cityfile
 if [[ $? -ne 0 ]]; then
 	if [[ $1 != "" ]]; then
-		echo $1 >> $cityfile
+		echo $@ >> $cityfile
 	fi
 fi
 
-herbstclient spawn termite -t "herbstweather" -e "/home/dbdexter/.config/rofi/weather_helper.sh $@"
+herbstclient spawn urxvt -title "herbstweather" -e sh -c "/home/dbdexter/.config/rofi/weather_helper.sh $@"
 killall rofi

@@ -12,6 +12,7 @@ get_val() {
 
 hc emit_hook reload
 
+
 # remove all existing keybindings
 hc keyunbind --all
 
@@ -65,10 +66,15 @@ hc keybind $Mod-Control-Down    resize down +$resizestep
 hc keybind $Mod-Control-Up      resize up +$resizestep
 hc keybind $Mod-Control-Right   resize right +$resizestep
 
-
 # tags
 tag_names=( " 一 " " 二 " " 三 " " 四 " " 五 " " 六 " ) #" 七 " " 八 " " 九 " " 十 ")
 tag_keys=( {1..6} )
+
+# Default frame split is horizontal
+hc set default_frame_layout 1
+# The default tag's layout has to be set separately, since default_frame_layout
+# does not affect already existing tags
+hc set_layout horizontal
 
 hc rename default "${tag_names[0]}" || true
 for i in ${!tag_names[@]} ; do
@@ -95,7 +101,7 @@ hc keybind $Mod-p pseudotile toggle
 # I.e. if there are two windows within a frame, the grid layout is skipped.
 hc keybind $Mod-space                                                           \
             or , and . compare tags.focus.curframe_wcount = 2                   \
-                     . cycle_layout +1 vertical horizontal max grid				\
+                     . cycle_layout +1 horizontal vertical max grid				\
                , cycle_layout +1
 
 # mouse
@@ -126,8 +132,8 @@ hc keybind $Mod-Shift-x spawn ~/.config/herbstluftwm/lock.sh
 hc keybind XF86AudioMute spawn pactl set-sink-mute 0 toggle					# Toggle mute-unmute
 hc keybind XF86AudioLowerVolume spawn pactl set-sink-volume 0 -5%			# Lower volume
 hc keybind XF86AudioRaiseVolume spawn pactl set-sink-volume 0 +5%			# Increase volume
-hc keybind XF86MonBrightnessUp spawn ~/.config/i3/i3blocks/backlight up		# Increase screen brightness
-hc keybind XF86MonBrightnessDown spawn ~/.config/i3/i3blocks/backlight down	# Decrease screen brightness
+hc keybind XF86MonBrightnessUp spawn ~/.config/herbstluftwm/backlight up		# Increase screen brightness
+hc keybind XF86MonBrightnessDown spawn ~/.config/herbstluftwm/backlight down	# Decrease screen brightness
 hc keybind XF86AudioPrev spawn mocp -r		# Previous track
 hc keybind XF86AudioNext spawn mocp -f		# Next track
 hc keybind XF86AudioPlay spawn mocp -G		# Toggle play-pause
@@ -163,7 +169,7 @@ hc set frame_padding 0
 hc set smart_window_surroundings 0
 hc set smart_frame_surroundings 0
 hc set mouse_recenter_gap 0
-hc set focus_follows_mouse 1
+hc set focus_follows_mouse 0
 
 # rules
 hc unrule -F
@@ -172,13 +178,13 @@ hc rule focus=on # normally focus new clients
 #hc rule focus=off # normally do not focus new clients
 
 # Floating overlay monitor
-hc add_monitor 1900x1080+10+0 "${tag_names[5]}" overlay
-hc floating "${tag_names[5]}" on
-hc lock_tag overlay
+#hc add_monitor 1900x1080+10+0 "${tag_names[5]}" overlay
+#hc floating "${tag_names[5]}" on
+#hc lock_tag overlay
 
 # status bar padding
 hc pad 0 $statusbar_height 0 0 0
-hc pad overlay $(($statusbar_height+5)) 0 0 0
+#hc pad overlay $(($statusbar_height+5)) 0 0 0
 
 hc rule --windowtype~'_NET_WM_WINDOW_TYPE_(DIALOG|UTILITY|SPLASH)' --pseudotile=on --focus=on
 hc rule --windowtype='_NET_WM_WINDOW_TYPE_DIALOG' --focus=on
@@ -206,9 +212,7 @@ done
 # Fuck Pidgin
 # Firefox: workspace 3
 hc rule class=Firefox tag="${tag_names[2]}"
-hc set default_frame_layout 1
 
 #++++++++++ Reload all accessory functions ++++++++++
 hc spawn killall polybar
 hc spawn polybar minimalbar
-hc spawn killall -USR1 termite

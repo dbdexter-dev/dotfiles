@@ -1,6 +1,6 @@
-let g:pathogen_disabled = [ 'YouCompleteMe' ]
-let g:ycm_server_python_interpreter = '/usr/bin/python2'
-let g:ycm_global_ycm_extra_conf = '/usr/share/vim/vimfiles/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'
+"let g:pathogen_disabled = [ 'YouCompleteMe' ]
+"let g:ycm_server_python_interpreter = '/usr/bin/python2'
+"let g:ycm_global_ycm_extra_conf = '/usr/share/vim/vimfiles/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'
 call pathogen#infect()
 
 " Syntax highlighting options
@@ -167,7 +167,7 @@ endfunction
 
 " Read-Write status string
 function! LightLineRWStat()
-	let isReadonly = &ft !~? 'help' && &readonly ? "": ""
+	let isReadonly = &ft !~? 'help' && &readonly ? "": ""
 	let isModified = &ft =~ 'help\|vimfiler\|gundo' ? '' : &modified ? '[+]' : &modifiable ? '' : '[-]'
 	return isModified . isReadonly
 endfunction
