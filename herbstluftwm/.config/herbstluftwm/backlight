@@ -1,0 +1,24 @@
+#!/bin/zsh
+# Checks backlight before decreasing it in order not
+# to turn the backlight completely off
+
+BACKLIGHT=$(light -G)
+SMALL_STEP=3
+LARGE_STEP=7
+STEP_THR=20
+
+if [[ $1 == "up" ]]; then
+	if [[ $BACKLIGHT -lt $STEP_THR ]]; then
+		light -A $SMALL_STEP
+	else
+		light -A $LARGE_STEP
+	fi
+else
+	if [[ $BACKLIGHT -gt $SMALL_STEP ]]; then
+		if [[ $BACKLIGHT -lt $STEP_THR ]]; then
+			light -U $SMALL_STEP
+		else
+			light -U $LARGE_STEP
+		fi
+	fi
+fi

@@ -2,7 +2,7 @@
 #define BG #2e3440
 #define TEXT #ffffff
 #define INACTIVE_BG #283038
-#define IND #536dfe
+#define IND #e91e63
 #define UNSEL #909090
 #define URG #ffc100
 
@@ -32,45 +32,3 @@ rofi.width: 500
 rofi.kb-mode-next:		Tab
 rofi.kb-mode-previous:	Control+Tab
 
-URxvt.saveLines: 1000
-URxvt.secondaryScreen: 1
-URxvt.secondaryScroll: 0
-URxvt.inputMethod: ibus
-URxvt.predictType: OverTheSpot
-URxvt.font:	xft:InconsolataForPowerline Nerd Font:size=12:antialias=true:hintstyle=hintfull, \
-			xft:Kochi Gothic:size=12:antialias=true, \
-			xft:Noto Emoji:size=12:antialias=true, \
-			xft:Noto Color Emoji:size=12:antialias=true
-URxvt.letterSpace: -1
-URxvt.scrollBar: false
-URxvt.termName: xterm-256color
-URxvt.fading: 20
-
-URxvt.cursorUnderline: false
-URxvt.cursorBlink: false
-
-URxvt.depth:32
-URxvt.background: rgba:2e00/3400/4000/f000
-URxvt.foreground: TEXT
-
-URxvt.color0:	#263238
-URxvt.color8:	#909090
-URxvt.color1:	#f44336
-URxvt.color9:	#ef5350
-URxvt.color2:	#4caf50
-URxvt.color10:	#8bc34a
-URxvt.color3:	#ffc107
-URxvt.color11:	#ffea00
-URxvt.color4:	#2196f3
-URxvt.color12:	#42a5f5
-URxvt.color5:	#ab47bc
-URxvt.color13:	#ba68c8
-URxvt.color6:	#00bcd4
-URxvt.color14:	#00e5ff
-URxvt.color7:	#cccccc
-URxvt.color15:	#ffffff
-
-URxvt.perl-ext-common: resize-font,matcher
-URxvt.url-launcher: /usr/bin/xdg-open
-URxvt.matcher.button: 1
-URxvt.matcher.rend.0: Uline

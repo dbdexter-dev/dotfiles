@@ -1,6 +1,7 @@
 "let g:pathogen_disabled = [ 'YouCompleteMe' ]
 "let g:ycm_server_python_interpreter = '/usr/bin/python2'
 "let g:ycm_global_ycm_extra_conf = '/usr/share/vim/vimfiles/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'
+let g:vcm_s_tab_mapping="	"
 call pathogen#infect()
 
 " Syntax highlighting options
@@ -18,10 +19,11 @@ hi! SpecialKey ctermbg=None
 
 " ++++++++ Custom Commands ++++++++
 command! MakeTags !ctags -R .
+
 command! PdfLatex !pdflatex %
-cmap W w !sudo tee > /dev/null %
-
-
+"Write to a file when you forgot to run vim as root
+command! -bar SudoWrite w !sudo tee > /dev/null %
+command! W SudoWrite | e!
 
 " ++++++++ Key Mappings ++++++++
 " Set leader to ','

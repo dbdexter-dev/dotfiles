@@ -5,7 +5,7 @@ ind_color = ${xrdb:polybar.ind_color}
 active = ${xrdb:polybar.active_color}
 urgent = ${xrdb:polybar.urgent}
 
-[bar/minimalbar]
+[bar/hlwm]
 ; Background and foreground colors
 background = ${colors.bg}
 foreground = ${colors.fg}

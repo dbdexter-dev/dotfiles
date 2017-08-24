@@ -10,6 +10,10 @@ get_val() {
 	xrdb -query | grep "hlwm.$1" | awk '{print $2}'
 }
 
+inactive_color=$(get_val "inactive_color")
+border_color=$(get_val "border_color")
+urgent_color=$(get_val "urgent_color")
+
 hc emit_hook reload
 
 
@@ -119,7 +123,7 @@ hc keybind $Mod-i jumpto urgent
 hc keybind $Mod-0 focus_monitor 0
 
 # rofi
-hc keybind $Mod-d spawn rofi -show run -modi "run,man:~/.config/rofi/man,theme:~/.config/rofi/theme,window"
+hc keybind $Mod-d spawn rofi -show run -modi "run,man:~/.config/rofi/man,window"
 # hc keybind XF86Search spawn rofi -show youtube -modi "youtube:~/.config/rofi/youtube,google:~/.config/rofi/web"
 hc keybind $Mod-w spawn rofi -show weather -modi "weather:~/.config/rofi/weather"
 
@@ -141,27 +145,27 @@ hc keybind XF86AudioPlay spawn mocp -G		# Toggle play-pause
 # theme
 hc attr theme.tiling.reset 1
 hc attr theme.floating.reset 1
-hc set frame_border_active_color $(get_val "inactive_color")
-hc set frame_border_normal_color $(get_val "inactive_color")
-hc set frame_bg_normal_color '#565656'
-hc set frame_bg_active_color '#f5f5f5'
+hc set frame_border_active_color $inactive_color
+hc set frame_border_normal_color $inactive_color
+hc set frame_bg_normal_color $inactive_color
+hc set frame_bg_active_color $border_color
 hc set frame_border_width 0
 hc set always_show_frame 0
 hc set frame_bg_transparent 1
 hc set frame_transparent_width 0
 hc set frame_gap 10
 
-hc attr theme.active.color $(get_val "border_color")
-hc attr theme.normal.color $(get_val "inactive_color")
-hc attr theme.urgent.color $(get_val "urgent_color")
+hc attr theme.active.color $border_color
+hc attr theme.normal.color $inactive_color
+hc attr theme.urgent.color $urgent_color
 hc attr theme.inner_width 1
 hc attr theme.inner_color black
 hc attr theme.border_width 2
 hc attr theme.floating.border_width 4
 hc attr theme.floating.outer_width 1
 hc attr theme.floating.outer_color black
-hc attr theme.active.inner_color $(get_val "inactive_color")
-hc attr theme.active.outer_color $(get_val "inactive_color")
+hc attr theme.active.inner_color $inactive_color
+hc attr theme.active.outer_color $inactive_color
 hc attr theme.background_color '#141414'
 
 hc set window_gap 0
@@ -186,8 +190,7 @@ hc rule focus=on # normally focus new clients
 hc pad 0 $statusbar_height 0 0 0
 #hc pad overlay $(($statusbar_height+5)) 0 0 0
 
-hc rule --windowtype~'_NET_WM_WINDOW_TYPE_(DIALOG|UTILITY|SPLASH)' --pseudotile=on --focus=on
-hc rule --windowtype='_NET_WM_WINDOW_TYPE_DIALOG' --focus=on
+hc rule windowtype~'_NET_WM_WINDOW_TYPE_(DIALOG|UTILITY|SPLASH)' pseudotile=on focus=on
 hc rule windowtype~'_NET_WM_WINDOW_TYPE_(NOTIFICATION|DOCK|DESKTOP)' manage=off
 
 # unlock, just to be sure
@@ -215,4 +218,4 @@ hc rule class=Firefox tag="${tag_names[2]}"
 
 #++++++++++ Reload all accessory functions ++++++++++
 hc spawn killall polybar
-hc spawn polybar minimalbar
+hc spawn polybar hlwm
