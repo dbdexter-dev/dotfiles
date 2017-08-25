@@ -6,6 +6,11 @@ fish_wd() {
 }
 local wd='%{$fg[$user_color]%}$(fish_wd)%{$reset_color%}'
 
+ta() {
+	tmux attach -t "shenanigans" || tmux new -t "shenanigans"
+}
+
+
 bindkey -v
 
 alias ls="ls --color=auto"
