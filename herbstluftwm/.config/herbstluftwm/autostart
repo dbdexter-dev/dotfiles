@@ -14,6 +14,8 @@ inactive_color=$(get_val "inactive_color")
 border_color=$(get_val "border_color")
 urgent_color=$(get_val "urgent_color")
 
+statusbar_height=27
+
 hc emit_hook reload
 
 
@@ -24,7 +26,6 @@ hc keyunbind --all
 # if you have a super key you will be much happier with Mod set to Mod4
 #Mod=Mod1    # Use alt as the main modifier
 Mod=Mod4   # Use the super key as the main modifier
-statusbar_height=26
 
 hc keybind $Mod-Shift-e quit
 hc keybind $Mod-Shift-r reload
@@ -55,8 +56,8 @@ hc keybind $Mod-Shift-l     shift right
 
 # splitting frames
 # create an empty frame at the specified direction
-hc keybind $Mod-u       split   bottom  0.5
-hc keybind $Mod-o       split   right   0.5
+hc keybind $Mod-u       split   bottom  0.66
+hc keybind $Mod-o       split   right   0.66
 # let the current frame explode into subframes
 hc keybind $Mod-Control-space split explode
 
@@ -154,7 +155,7 @@ hc set frame_border_width 0
 hc set always_show_frame 0
 hc set frame_bg_transparent 1
 hc set frame_transparent_width 0
-hc set frame_gap 10
+hc set frame_gap 4
 
 hc attr theme.active.color $border_color
 hc attr theme.normal.color $inactive_color

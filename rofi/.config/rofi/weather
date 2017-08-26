@@ -14,5 +14,5 @@ if [[ $? -ne 0 ]]; then
 	fi
 fi
 
-herbstclient spawn urxvt -title "herbstweather" -e sh -c "/home/dbdexter/.config/rofi/weather_helper.sh $@"
+herbstclient spawn urxvt -title "herbstweather" -e sh -c "$HOME/.config/rofi/weather_helper.sh $@"
 killall rofi

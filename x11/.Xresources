@@ -16,6 +16,10 @@ hlwm.border_color: IND
 hlwm.inactive_color: BG
 hlwm.urgent_color: URG
 
+i3wm.bgcolor: BG
+i3wm.textcolor: TEXT
+i3wb.ind_color: IND
+
 rofi.color-enabled: true
 rofi.color-window: BG, IND, IND
 rofi.color-normal: BG, UNSEL, INACTIVE_BG, IND, BG

@@ -1,13 +1,11 @@
 "let g:pathogen_disabled = [ 'YouCompleteMe' ]
 "let g:ycm_server_python_interpreter = '/usr/bin/python2'
 "let g:ycm_global_ycm_extra_conf = '/usr/share/vim/vimfiles/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'
-let g:vcm_s_tab_mapping="	"
 call pathogen#infect()
 
 " Syntax highlighting options
 syntax on
 filetype plugin indent on
-set omnifunc=syntaxcomplete#Complete
 set background=dark
 
 colorscheme material
@@ -65,6 +63,13 @@ map <Leader>lC :-1read $HOME/.vim/templates/default.cpp<CR>6ji<Tab>
 
 
 " ++++++++ Behavior Settings ++++++++
+" Swap files in a separate directory
+set backupdir=~/.vim-tmp
+set directory=~/.vim-tmp
+
+" Default clipboard is system clipboard <3
+set clipboard=unnamed
+
 " Faster redrawing
 set lazyredraw
 set ttyfast
@@ -116,6 +121,8 @@ set pastetoggle=<F2>
 set list
 set listchars=tab:· 
 
+
+
 " ++++++++ Lightline configuration ++++++++
 let g:lightline = {
 	\ 'colorscheme': 'material',
@@ -156,6 +163,13 @@ let g:lightline = {
 	\ }
 
 
+" ++++++++ VimCompletesMe config ++++++++
+" S-<Tab> = <Tab>
+let g:vcm_s_tab_behavior = 1
+let g:vcm_s_tab_mapping="	"
+
+" Fallback to tab if no match is found
+let g:vcm_tab_complete = "tab"
 
 " ++++++++ Lightline Functions ++++++++
 " Fugitive-related status string

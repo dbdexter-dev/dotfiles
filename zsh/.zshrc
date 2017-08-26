@@ -1,15 +1,32 @@
 # Zsh config file
 
 local user_color='green'
-fish_wd() {
+local master_session='shenanigans'
+local fish_wd() {
 	pwd | sed -e "s|^$HOME|~|;"'s|\([^/.]\)[^/]*/|\1/|g'
 }
 local wd='%{$fg[$user_color]%}$(fish_wd)%{$reset_color%}'
 
 ta() {
-	tmux attach -t "shenanigans" || tmux new -t "shenanigans"
+	tmux attach -t $master_session || tmux new -s $master_session
 }
 
+# Keep every terminal multiplexed, attach to old sessions and create new ones as needed
+save_my_ass() {
+	if [[ -z $TMUX ]]; then
+		local master_status=$(tmux ls | grep $master_session | grep 'attached')
+		if [[ $master_status == "" ]]; then
+			ta
+		else
+			local session_name=$(tmux ls | grep -m1 -v 'attached' | cut -d":" -f1)
+			if [[ $session_name == "" ]]; then
+				tmux new-session -s $(date +%s%N | md5sum | cut -b 1-8)
+			else
+				tmux attach -t $session_name
+			fi
+		fi
+	fi
+}
 
 bindkey -v
 
@@ -53,3 +70,5 @@ HISTFILE=~/.histfile
 HISTSIZE=1000
 SAVEHIST=1000
 # End of lines configured by zsh-newuser-install
+
+save_my_ass

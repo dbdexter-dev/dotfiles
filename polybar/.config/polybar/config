@@ -1,7 +1,7 @@
 [colors]
 bg = ${xrdb:polybar.bg_color}
 fg = ${xrdb:polybar.text_color}
-ind_color = ${xrdb:polybar.ind_color}
+ind = ${xrdb:polybar.ind_color}
 active = ${xrdb:polybar.active_color}
 urgent = ${xrdb:polybar.urgent}
 
@@ -9,13 +9,12 @@ urgent = ${xrdb:polybar.urgent}
 ; Background and foreground colors
 background = ${colors.bg}
 foreground = ${colors.fg}
-height = 26
+height = 24
 
 ; Bar position offset
 offset-x = 0
 offset-y = 3
-border-right-size = 10
-border-left-size = 10
+border-size=4
 border-top-size = 2
 border-top-color = ${colors.bg}
 border-bottom-size = 2
@@ -25,14 +24,14 @@ border-bottom-color = ${colors.bg}
 
 ; Underline size and color
 line-size = 3
-line-color = ${colors.ind_color}
+line-color = ${colors.ind}
 
 ; Padding at either side of the bar
 padding = 2
 padding-right = 14
 
 ; Fonts
-font-0 = "SFNS Display:style=Regular:size=12;1"
+font-0 = "SFNS Display:style=Regular:size=12;2"
 font-1 = "Noto Sans CJK JP:style=Regular:size=12;2"
 font-2 = "FontAwesome:style=Regular:size=11;2"
 
@@ -117,8 +116,8 @@ enable-scroll = true
 
 label-active = %name%
 label-active-foreground = ${colors.bg}
-#label-active-underline = ${colors.ind_color}
-label-active-background = ${colors.ind_color}
+#label-active-underline = ${colors.ind}
+label-active-background = ${colors.ind}
 label-active-padding = 1
 
 label-urgent = %name%
