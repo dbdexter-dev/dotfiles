@@ -7,28 +7,16 @@ local fish_wd() {
 }
 local wd='%{$fg[$user_color]%}$(fish_wd)%{$reset_color%}'
 
+# Attach to the main session, or create it if it doesn't exist
 ta() {
 	tmux attach -t $master_session || tmux new -s $master_session
 }
 
-# Keep every terminal multiplexed, attach to old sessions and create new ones as needed
-save_my_ass() {
-	if [[ -z $TMUX ]]; then
-		local master_status=$(tmux ls | grep $master_session | grep 'attached')
-		if [[ $master_status == "" ]]; then
-			ta
-		else
-			local session_name=$(tmux ls | grep -m1 -v 'attached' | cut -d":" -f1)
-			if [[ $session_name == "" ]]; then
-				tmux new-session -s $(date +%s%N | md5sum | cut -b 1-8)
-			else
-				tmux attach -t $session_name
-			fi
-		fi
-	fi
-}
 
 bindkey -v
+bindkey '[A' up-line-or-search
+bindkey '[B' down-line-or-search
+
 
 alias ls="ls --color=auto"
 alias vi="vim"
@@ -40,11 +28,6 @@ setopt promptsubst
 
 PROMPT="%n@%m ${wd}> "
 RPROMPT="%{$fg_bold[red]%}%(?..%?)%{$reset_color%}"
-command_not_found_handler() {
-	# Weeb shit right here
-	echo -e "バカ！「$1」わ何ですか？" >&2
-	return 127
-}
 
 autoload -Uz compinit
 compinit
@@ -71,4 +54,17 @@ HISTSIZE=1000
 SAVEHIST=1000
 # End of lines configured by zsh-newuser-install
 
-save_my_ass
+# Keep every terminal multiplexed, attach to old sessions and create new ones as needed
+if [[ $- == *i* && -z $TMUX ]]; then
+	local master_status=$(tmux ls | grep $master_session | grep 'attached')
+	if [[ $master_status == "" ]]; then
+		ta
+	else
+		local session_name=$(tmux ls | grep -v 'attached' | tail -1 | cut -d":" -f1)
+		if [[ $session_name == "" ]]; then
+			tmux new-session -s $(date +%s%N | md5sum | cut -b 1-8)
+		else
+			tmux attach -t $session_name
+		fi
+	fi
+fi

@@ -68,7 +68,7 @@ set backupdir=~/.vim-tmp
 set directory=~/.vim-tmp
 
 " Default clipboard is system clipboard <3
-set clipboard=unnamed
+set clipboard=unnamedplus
 
 " Faster redrawing
 set lazyredraw
