@@ -49,7 +49,7 @@ sudo chsh -s $(which zsh)
 
 echo -e "${green}==> Installing vim plugins...$normal"
 cd $HOME
-mkdir -p .vim/autoload .vim/bundle
+mkdir -p .vim/autoload .vim/bundle .vim-tmp
 cd .vim
 wget $pathogen -O autoload/pathogen.vim
 cd bundle

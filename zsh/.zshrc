@@ -29,8 +29,6 @@ setopt promptsubst
 PROMPT="%n@%m ${wd}> "
 RPROMPT="%{$fg_bold[red]%}%(?..%?)%{$reset_color%}"
 
-autoload -Uz compinit
-compinit
 # The following lines were added by compinstall
 
 zstyle ':completion:*' completer _complete _ignored _approximate
@@ -43,7 +41,7 @@ zstyle ':completion:*' matcher-list '' 'm:{[:lower:]}={[:upper:]}' 'r:|[._-]=* r
 zstyle ':completion:*' max-errors 2
 zstyle ':completion:*:cd:*' file-patterns '*(/):directories'
 zstyle ':completion:*:ls:*' file-patterns '*(/):directories'
-zstyle :compinstall filename '/home/dbdexter/.zshrc'
+zstyle :compinstall filename "$HOME/.zshrc"
 
 autoload -Uz compinit
 compinit
