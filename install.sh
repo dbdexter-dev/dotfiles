@@ -1,7 +1,7 @@
 #!/bin/bash
 # Script to migrate muh config easily
 
-packages="git zsh vim tmux stow rxvt-unicode wget"
+packages="git zsh vim tmux stow wget"
 dotrepo="dbdexter-dev/dotfiles"
 pathogen="https://raw.githubusercontent.com/tpope/vim-pathogen/master/autoload/pathogen.vim"
 vim_plugins=(	'taohex/lightline-buffer'	\
@@ -68,9 +68,8 @@ for dir in $(ls -d -- */); do
 	stow $dir
 done
 
-
 echo -e "${green}Migration complete, good luck captain!$normal"
-sleep 3
+sleep 1
 
 cd $HOME
 zsh

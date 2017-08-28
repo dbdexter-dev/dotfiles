@@ -14,7 +14,7 @@ height = 24
 ; Bar position offset
 offset-x = 0
 offset-y = 3
-border-size=4
+border-size = 4
 border-top-size = 2
 border-top-color = ${colors.bg}
 border-bottom-size = 2
@@ -28,7 +28,7 @@ line-color = ${colors.ind}
 
 ; Padding at either side of the bar
 padding = 2
-padding-right = 14
+padding-right = 18
 
 ; Fonts
 font-0 = "SFNS Display:style=Regular:size=12;2"

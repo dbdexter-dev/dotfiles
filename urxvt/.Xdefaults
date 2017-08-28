@@ -16,7 +16,7 @@ URxvt.cursorUnderline: false
 URxvt.cursorBlink: false
 
 URxvt.depth:32
-URxvt.background: rgba:2e00/3400/4000/f000
+URxvt.background: rgba:2e00/3400/4000/e000
 URxvt.foreground: #ffffff
 
 ; Black
@@ -29,8 +29,8 @@ URxvt.color9:	#ef5350
 URxvt.color2:	#4caf50
 URxvt.color10:	#8bc34a
 ; Yellow
-URxvt.color3:	#ffc107
-URxvt.color11:	#ffea00
+URxvt.color3:	#ff9800
+URxvt.color11:	#ffc107
 ; Blue
 URxvt.color4:	#2196f3
 URxvt.color12:	#42a5f5

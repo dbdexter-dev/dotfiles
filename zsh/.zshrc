@@ -9,7 +9,15 @@ local wd='%{$fg[$user_color]%}$(fish_wd)%{$reset_color%}'
 
 # Attach to the main session, or create it if it doesn't exist
 ta() {
-	tmux attach -t $master_session || tmux new -s $master_session
+	tmux attach -t $master_session
+	if [[ $? -ne 0 ]]; then
+		tmux new -ds $master_session
+		tmux split-pane -ht $master_session
+		tmux resize-pane -x 78
+		tmux split-pane -vt $master_session
+		tmux resize-pane -y 19
+		tmux attach -t $master_session
+	fi
 }
 
 
@@ -55,14 +63,14 @@ SAVEHIST=1000
 # Keep every terminal multiplexed, attach to old sessions and create new ones as needed
 if [[ $- == *i* && -z $TMUX ]]; then
 	local master_status=$(tmux ls | grep $master_session | grep 'attached')
-	if [[ $master_status == "" ]]; then
+	if [[ $master_status == "" || -n "$SSH_CONNECTION" ]]; then
 		ta
 	else
-		local session_name=$(tmux ls | grep -v 'attached' | tail -1 | cut -d":" -f1)
-		if [[ $session_name == "" ]]; then
+		local targetsession=$(tmux ls | grep -v 'attached' | tail -1 | cut -d":" -f1)
+		if [[ $targetsession == "" ]]; then
 			tmux new-session -s $(date +%s%N | md5sum | cut -b 1-8)
 		else
-			tmux attach -t $session_name
+			tmux attach -t $targetsession
 		fi
 	fi
 fi

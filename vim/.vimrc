@@ -1,11 +1,7 @@
-"let g:pathogen_disabled = [ 'YouCompleteMe' ]
-"let g:ycm_server_python_interpreter = '/usr/bin/python2'
-"let g:ycm_global_ycm_extra_conf = '/usr/share/vim/vimfiles/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'
 call pathogen#infect()
 
 " Syntax highlighting options
 syntax on
-filetype plugin indent on
 set background=dark
 
 colorscheme material
@@ -14,21 +10,19 @@ hi! LineNr ctermbg=None cterm=Bold
 hi! CursorLineNr ctermfg=3
 hi! SpecialKey ctermbg=None
 
-
-" ++++++++ Custom Commands ++++++++
+" Custom Commands " {{{
 command! MakeTags !ctags -R .
 
 command! PdfLatex !pdflatex %
 "Write to a file when you forgot to run vim as root
 command! -bar SudoWrite w !sudo tee > /dev/null %
 command! W SudoWrite | e!
-
-" ++++++++ Key Mappings ++++++++
+" }}}
+" Key Mappings " {{{
 " Set leader to ','
 let mapleader=","
-map Q <nop>
+
 map <up> <nop>
-map <F1> <nop>
 " Close buffer
 map <down> :bp<bar>sp<bar>bn<bar>bd<CR>
 " Next buffer
@@ -50,19 +44,12 @@ map <C-k> <C-w>k
 map <C-l> <C-w>l
 
 " Relative-Absolute numbering toggle
-nmap <C-n> :set rnu!<CR>
-" Nicer, lighter syntastic configuration
-map <Leader>e :Errors<CR>
-map <Leader>u :lclose<CR>
-" Call syntastic on command
-map <Leader>c :call SyntasticUpdate()<CR>
+"nmap <C-n> :set rnu!<CR>
 " Templates for common programming languages
-map <Leader>lc :-1read $HOME/.vim/templates/default.c<CR>4ji<Tab>
-map <Leader>lC :-1read $HOME/.vim/templates/default.cpp<CR>6ji<Tab>
+map <Leader>lc :-1read $HOME/.vim/templates/skeleton.c<CR>4ji<Tab>
 
-
-
-" ++++++++ Behavior Settings ++++++++
+" }}}
+" Behavior Settings " {{{
 " Swap files in a separate directory
 set backupdir=~/.vim-tmp
 set directory=~/.vim-tmp
@@ -83,7 +70,6 @@ set backspace=indent,eol,start
 " Tab width options
 set noexpandtab
 set tabstop=4
-set softtabstop=4
 set shiftwidth=4
 set smartindent
 set linespace=0
@@ -121,9 +107,13 @@ set pastetoggle=<F2>
 set list
 set listchars=tab:· 
 
+" Auto-fold based on markers
+set foldmethod=marker
 
-
-" ++++++++ Lightline configuration ++++++++
+" Auto-insert tabs as needed
+filetype plugin indent on
+" }}}
+" Lightline configuration " {{{
 let g:lightline = {
 	\ 'colorscheme': 'material',
 	\ 'separator': { 'left': '', 'right': '' },
@@ -137,7 +127,7 @@ let g:lightline = {
 	\   'left': [ [ 'mode', 'paste'],
 	\             [ 'fugitive', 'rwstat' ],
 	\			  [ 'filename' ] ],
-	\	'right': [ [ 'syntastic', 'whitespace', 'lineinfo' , 'percent' ],
+	\	'right': [ [ 'linterError', 'linterWarn', 'linterOK', 'whitespace', 'lineinfo' , 'percent' ],
 	\			   [ 'file_info' ],
 	\			   [ 'filetype' ] ]
 	\	},
@@ -146,12 +136,16 @@ let g:lightline = {
 	\	},
 	\ 'component_expand': {
 	\	'whitespace': 'WhitespaceCheck',
-	\	'buffercurrent': 'lightline#buffer#buffercurrent2',
-	\	'syntastic': 'SyntasticStatuslineFlag'
+	\	'linterOK': 'LightlineLinterOK',
+	\	'linterWarn': 'LightlineLinterWarn',
+	\	'linterError': 'LightlineLinterError',
+	\	'buffercurrent': 'lightline#buffer#buffercurrent2'
 	\	},
 	\ 'component_type': {
 	\	'whitespace': 'warning',
-	\	'syntastic': 'error'
+	\	'linterOK': 'ok',
+	\	'linterWarn': 'warning',
+	\	'linterError': 'error'
 	\	},
 	\ 'component_function' : {
 	\	'fugitive': 'LightLineFugitive',
@@ -161,17 +155,8 @@ let g:lightline = {
 	\	'bufferinfo': 'lightline#buffer#bufferinfo'
 	\	}
 	\ }
-
-
-" ++++++++ VimCompletesMe config ++++++++
-" S-<Tab> = <Tab>
-let g:vcm_s_tab_behavior = 1
-let g:vcm_s_tab_mapping="	"
-
-" Fallback to tab if no match is found
-let g:vcm_tab_complete = "tab"
-
-" ++++++++ Lightline Functions ++++++++
+" }}}
+" Lightline Functions " {{{
 " Fugitive-related status string
 function! LightLineFugitive()
 	if exists("*fugitive#head")
@@ -188,15 +173,43 @@ function! LightLineRWStat()
 	return isModified . isReadonly
 endfunction
 
-
-
-" ++++++++ Syntax Checking ++++++++
-let g:syntastic_mode_map = { 'passive_filetypes': ['python'] }
-
-function! SyntasticUpdate()
-	SyntasticCheck
-	call lightline#update()
+" Get linter status
+function! LightlineLinterError() abort
+	let l:count = ale#statusline#Count(bufnr(''))
+	let l:all_errors = l:count.error + l:count.style_error
+	return l:count.total == 0 ? '' : printf('E: %d', l:all_errors)
 endfunction
+
+function! LightlineLinterWarn() abort
+	let l:count = ale#statusline#Count(bufnr(''))
+	let l:all_errors = l:count.error + l:count.style_error
+	let l:all_non_errors = l:count.total - l:all_errors
+	return l:count.total == 0 ? '' : printf('W: %d', l:all_non_errors)
+endfunction
+
+function! LightlineLinterOK() abort
+	let l:count = ale#statusline#Count(bufnr(''))
+	return l:count.total == 0 ? 'OK' : ''
+endfunction
+" }}}
+" VimCompletesMe config " {{{
+" S-<Tab> = <Tab>
+let g:vcm_s_tab_behavior = 1
+let g:vcm_s_tab_mapping="	"
+
+" Fallback to tab if no match is found
+let g:vcm_tab_complete = "tab"
+" }}}
+" Ale config " {{{
+let g:ale_completion_enabled = 1
+let g:ale_lint_on_text_changed = 'normal'
+let g:ale_lint_on_insert_leave = 1
+let g:ale_linters = {
+	\ 'python': [ '' ],
+	\ 'python3': [ '' ]
+	\}
+" }}}
+" Syntax Checking " {{{
 " Whitespace checker string
 function! WhitespaceCheck()
 	let wLine = lightline#whitespace#check_mixed_indent()
@@ -209,24 +222,15 @@ endfunction
 augroup autoCheck
 	autocmd!
 	autocmd BufWritePost * call lightline#update()
-	"if exists("SyntasticCheck")
-		"autocmd BufWritePost *.{c,h,cpp,hpp,nasm,asm,inc,sh} call SyntasticUpdate()
-	"endif
+	autocmd User ALELint call lightline#update()
 augroup END
-
-
-" ++++++++ Miscellaneous Autocommands ++++++++
+" }}}
+" Miscellaneous Autocommands {{{
 " Custom syntax highlighting for unusual file extensions
 augroup autoFileRecognition
 	autocmd!
 	autocmd BufRead,BufNewFile *.xm set filetype=objc
 	autocmd BufRead,BufNewFile *.nasm,*.asm set filetype=nasm
-
-	 " I shouldn't have to do this, really, but apparently
-	 " vim thinks he is smarter than me and sets tabstop to 8
-	 " for python scripts
-	autocmd FileType python setlocal tabstop=4
-	autocmd FileType python setlocal noexpandtab
 augroup END
 
 " Automatically remove trailing space at the end of lines
@@ -239,3 +243,4 @@ augroup fileSpecificBindings
 	" Rebuild tags
 	autocmd FileType {c,cpp,h,hpp,nasm,asm,inc,objc} map <F5> :MakeTags<CR>
 augroup END
+"}}}
