@@ -3,11 +3,12 @@ URxvt.secondaryScreen: 1
 URxvt.secondaryScroll: 0
 URxvt.inputMethod: ibus
 URxvt.predictType: OverTheSpot
-URxvt.font:	xft:InconsolataForPowerline Nerd Font:size=12:antialias=true:hintstyle=hintfull:dpi=96, \
+URxvt.font:	xft:Monaco for Powerline:size=11:antialias=true:hintstyle=hintfull:dpi=96, \
 			xft:Kochi Gothic:size=12:antialias=true:dpi=96, \
 			xft:Noto Emoji:size=12:antialias=true, \
 			xft:Noto Color Emoji:size=12:antialias=true
 URxvt.letterSpace: -1
+URxvt.lineSpace: -1
 URxvt.scrollBar: false
 URxvt.termName: xterm-256color
 URxvt.fading: 20

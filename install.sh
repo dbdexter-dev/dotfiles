@@ -2,11 +2,12 @@
 # Script to migrate muh config easily
 
 packages="git zsh vim tmux stow wget"
+stufftostow="zsh vim tmux"
 dotrepo="dbdexter-dev/dotfiles"
 pathogen="https://raw.githubusercontent.com/tpope/vim-pathogen/master/autoload/pathogen.vim"
 vim_plugins=(	'taohex/lightline-buffer'	\
 				'itchyny/lightline.vim'		\
-				'vim-syntastic/syntastic'	\
+				'w0rp/ale'	\
 				'ajh17/VimCompletesMe'		\
 				'tpope/vim-repeat'			\
 				'tpope/vim-surround'		\
@@ -37,7 +38,7 @@ echo -e "$green==> Will use ${manager}$normal"
 set -e
 
 case $manager in
-	'pacman') sudo pacman -Sy $packages;;
+	'pacman') sudo pacman -Sy --needed $packages;;
 	'emerge') sudo emerge --sync; sudo emerge $packages;;
 	'apt-get') sudo apt-get update; sudo apt-get install $packages;;
 	'yum') sudo yum update; sudo yum install $packages;;
@@ -45,7 +46,6 @@ case $manager in
 esac
 
 sudo chsh -s $(which zsh)
-
 
 echo -e "${green}==> Installing vim plugins...$normal"
 cd $HOME
@@ -64,8 +64,13 @@ git clone "https://github.com/$dotrepo" .dotfiles
 cd .dotfiles
 
 echo -e "${green}==> Stowing...$normal"
-for dir in $(ls -d -- */); do
+for dir in $stufftostow; do
 	stow $dir
+done
+
+echo -e "${green}==> Removing unnecessary config...$normal"
+for dir in $(ls -d */ | egrep -v $(echo $stufftostow | sed -e 's/ /|/g')); do
+	rm $dir
 done
 
 echo -e "${green}Migration complete, good luck captain!$normal"

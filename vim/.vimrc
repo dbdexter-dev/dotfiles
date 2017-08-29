@@ -1,3 +1,4 @@
+let g:pathogen_disabled = []
 call pathogen#infect()
 
 " Syntax highlighting options
@@ -225,7 +226,7 @@ augroup autoCheck
 	autocmd User ALELint call lightline#update()
 augroup END
 " }}}
-" Miscellaneous Autocommands {{{
+" Miscellaneous Autocommands " {{{
 " Custom syntax highlighting for unusual file extensions
 augroup autoFileRecognition
 	autocmd!
@@ -243,4 +244,6 @@ augroup fileSpecificBindings
 	" Rebuild tags
 	autocmd FileType {c,cpp,h,hpp,nasm,asm,inc,objc} map <F5> :MakeTags<CR>
 augroup END
+"}}}
+" Plugin stems " {{{
 "}}}
