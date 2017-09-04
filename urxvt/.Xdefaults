@@ -7,8 +7,7 @@ URxvt.font:	xft:Monaco for Powerline:size=11:antialias=true:hintstyle=hintfull:d
 			xft:Kochi Gothic:size=12:antialias=true:dpi=96, \
 			xft:Noto Emoji:size=12:antialias=true, \
 			xft:Noto Color Emoji:size=12:antialias=true
-URxvt.letterSpace: -1
-URxvt.lineSpace: -1
+URxvt.letterSpace: -2
 URxvt.scrollBar: false
 URxvt.termName: xterm-256color
 URxvt.fading: 20

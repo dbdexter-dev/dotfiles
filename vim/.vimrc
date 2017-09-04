@@ -11,6 +11,19 @@ hi! LineNr ctermbg=None cterm=Bold
 hi! CursorLineNr ctermfg=3
 hi! SpecialKey ctermbg=None
 
+" Plugin stems " {{{
+function CommentLine()
+	let l:firstChar = matchstr(getline('.'), '\S')
+	let l:commentChars = split(&commentstring, '%s')
+
+	if exists("l:commentChars[0]") && (l:firstChar != l:commentChars[0])
+		exe 'normal' 'I' . l:commentChars[0] . ' '
+		if exists("l:commentChars[1]")
+			exe 'normal' 'A ' . l:commentChars[1]
+		end
+	end
+endfunction
+"}}}
 " Custom Commands " {{{
 command! MakeTags !ctags -R .
 
@@ -19,17 +32,17 @@ command! PdfLatex !pdflatex %
 command! -bar SudoWrite w !sudo tee > /dev/null %
 command! W SudoWrite | e!
 " }}}
-" Key Mappings " {{{
+" Key Bindings " {{{
 " Set leader to ','
 let mapleader=","
 
 map <up> <nop>
 " Close buffer
-map <down> :bp<bar>sp<bar>bn<bar>bd<CR>
+nmap <down> :bp<bar>sp<bar>bn<bar>bd<CR>
 " Next buffer
-map <left> :bprev<CR>
+nmap <left> :bprev<CR>
 " Previous buffer
-map <right> :bnext<CR>
+nmap <right> :bnext<CR>
 
 " Improved efficiency when typing commands
 nnoremap ; :
@@ -39,15 +52,15 @@ nnoremap <C-e> 3<C-e>
 nnoremap <C-y> 3<C-y>
 
 " Easy window navigation
-map <C-h> <C-w>h
-map <C-j> <C-w>j
-map <C-k> <C-w>k
-map <C-l> <C-w>l
+nmap <C-h> <C-w>h
+nmap <C-j> <C-w>j
+nmap <C-k> <C-w>k
+nmap <C-l> <C-w>l
 
-" Relative-Absolute numbering toggle
-"nmap <C-n> :set rnu!<CR>
 " Templates for common programming languages
-map <Leader>lc :-1read $HOME/.vim/templates/skeleton.c<CR>4ji<Tab>
+nmap <Leader>lc :-1read $HOME/.vim/templates/skeleton.c<CR>4ji<Tab>
+" Comment lines
+map <Leader>c :call CommentLine()<CR>
 
 " }}}
 " Behavior Settings " {{{
@@ -56,7 +69,7 @@ set backupdir=~/.vim-tmp
 set directory=~/.vim-tmp
 
 " Default clipboard is system clipboard <3
-set clipboard=unnamedplus
+"set clipboard=unnamedplus
 
 " Faster redrawing
 set lazyredraw
@@ -75,7 +88,6 @@ set shiftwidth=4
 set smartindent
 set linespace=0
 
-" File options
 " Show all matching files when tab completing
 set wildmenu
 " Fuzzy search files recursively
@@ -113,6 +125,7 @@ set foldmethod=marker
 
 " Auto-insert tabs as needed
 filetype plugin indent on
+
 " }}}
 " Lightline configuration " {{{
 let g:lightline = {
@@ -193,14 +206,6 @@ function! LightlineLinterOK() abort
 	return l:count.total == 0 ? 'OK' : ''
 endfunction
 " }}}
-" VimCompletesMe config " {{{
-" S-<Tab> = <Tab>
-let g:vcm_s_tab_behavior = 1
-let g:vcm_s_tab_mapping="	"
-
-" Fallback to tab if no match is found
-let g:vcm_tab_complete = "tab"
-" }}}
 " Ale config " {{{
 let g:ale_completion_enabled = 1
 let g:ale_lint_on_text_changed = 'normal'
@@ -241,9 +246,8 @@ augroup fileSpecificBindings
 	autocmd!
 	" Create a pdf of the current tex file with F5
 	autocmd FileType tex map <buffer> <F5> :PdfLatex<CR>
+	autocmd Filetype xdefaults map <F5> :call system('xrdb '.expand('%:p'))<CR>
 	" Rebuild tags
 	autocmd FileType {c,cpp,h,hpp,nasm,asm,inc,objc} map <F5> :MakeTags<CR>
 augroup END
-"}}}
-" Plugin stems " {{{
 "}}}

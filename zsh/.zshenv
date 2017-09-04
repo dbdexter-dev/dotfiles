@@ -4,7 +4,7 @@ export THEOS=/opt/theos
 export PATH="$HOME/.local":$THEOS/bin:$PATH
 export EDITOR="vim"
 export BROWSER="firefox"
-export TERMINAL="urxvtc"
+export TERMINAL="urxvt"
 export SUDO_EDITOR="vim"
 
 # Options for Wayland (might switch from xorg at some point)

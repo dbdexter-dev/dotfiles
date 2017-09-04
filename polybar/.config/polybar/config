@@ -14,7 +14,7 @@ height = 24
 ; Bar position offset
 offset-x = 0
 offset-y = 3
-border-size = 4
+border-size = 3
 border-top-size = 2
 border-top-color = ${colors.bg}
 border-bottom-size = 2
