@@ -6,7 +6,7 @@
 
 DBFILE=~/.config/rofi/man.db
 
-for dir in $(ls /usr/share/man); do
+for dir in $(ls -d /usr/share/man/man*); do
 	date=$(date -r /usr/share/man/$dir +%s)
 	if [[ $date -gt $LASTEDIT ]]; then
 		LASTEDIT=$date
@@ -21,7 +21,7 @@ if [[ -n $@ ]]; then
 	NUM=$(sed -e 's/[\(\)]//g' <<< $(cut -d" " -f2 <<< $1))
 	PAGE=$(cut -d" " -f1 <<< $1)
 
-	herbstclient spawn termite -t "man $PAGE" -e "man $NUM $PAGE"
+	herbstclient spawn urxvt -title "man $PAGE" -e "man $NUM $PAGE"
 else
 	cat $DBFILE
 fi

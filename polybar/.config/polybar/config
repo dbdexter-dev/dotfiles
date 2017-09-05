@@ -28,7 +28,7 @@ line-color = ${colors.ind}
 
 ; Padding at either side of the bar
 padding = 2
-padding-right = 18
+padding-right = 13
 
 ; Fonts
 font-0 = "SFNS Display:style=Regular:size=12;2"

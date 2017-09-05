@@ -2,7 +2,7 @@
 #define BG #2e3440
 #define TEXT #ffffff
 #define INACTIVE_BG #283038
-#define IND #00b8d4
+#define IND #bfe4ff
 #define UNSEL #909090
 #define URG #ffc100
 
