@@ -17,7 +17,7 @@ function CommentLine()
 	let l:commentChars = split(&commentstring, '%s')
 
 	if exists("l:commentChars[0]") && (l:firstChar != l:commentChars[0])
-		exe 'normal' 'I' . l:commentChars[0] . ' '
+		exe 'normal' 'I' . l:commentChars[0]
 		if exists("l:commentChars[1]")
 			exe 'normal' 'A ' . l:commentChars[1]
 		end

@@ -9,15 +9,15 @@ urgent = ${xrdb:polybar.urgent}
 ; Background and foreground colors
 background = ${colors.bg}
 foreground = ${colors.fg}
-height = 24
+height = 25
 
 ; Bar position offset
 offset-x = 0
 offset-y = 3
 border-size = 3
-border-top-size = 2
+border-top-size = 0
 border-top-color = ${colors.bg}
-border-bottom-size = 2
+border-bottom-size = 0
 border-bottom-color = ${colors.bg}
 ; Corner radius
 ; radius = 2
@@ -28,7 +28,7 @@ line-color = ${colors.ind}
 
 ; Padding at either side of the bar
 padding = 2
-padding-right = 13
+padding-right = 10
 
 ; Fonts
 font-0 = "SFNS Display:style=Regular:size=12;2"
@@ -43,7 +43,7 @@ modules-left = hlwm
 modules-center = xwindow
 modules-right = battery date
 
-; Tray position and scale
+;  Tray position and scale
 tray-position = right
 tray-scale = 1.0
 tray-transparent = false
