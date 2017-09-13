@@ -7,7 +7,7 @@
 DBFILE=~/.config/rofi/man.db
 
 for dir in $(ls -d /usr/share/man/man*); do
-	date=$(date -r /usr/share/man/$dir +%s)
+	date=$(date -r $dir +%s)
 	if [[ $date -gt $LASTEDIT ]]; then
 		LASTEDIT=$date
 	fi

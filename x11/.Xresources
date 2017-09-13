@@ -1,10 +1,10 @@
 !Color scheme to be adopted by as many applications as possible
 #define BG #2e3440
 #define TEXT #ffffff
-#define INACTIVE_BG #283038
-#define IND #bfe4ff
-#define UNSEL #909090
-#define URG #ffc100
+#define INACTIVE_BG #2e3440
+#define IND #55bbcc
+#define UNSEL #ffffff
+#define URG #ccdd55
 
 polybar.bg_color: BG
 polybar.text_color: TEXT
@@ -17,8 +17,9 @@ hlwm.inactive_color: BG
 hlwm.urgent_color: URG
 
 i3wm.bgcolor: BG
-i3wm.textcolor: TEXT
-i3wb.ind_color: IND
+i3wm.fgcolor: TEXT
+i3wm.indcolor: IND
+i3wm.urgentcolor: URG
 
 rofi.color-enabled: true
 rofi.color-window: BG, IND, IND

@@ -250,4 +250,10 @@ augroup fileSpecificBindings
 	" Rebuild tags
 	autocmd FileType {c,cpp,h,hpp,nasm,asm,inc,objc} map <F5> :MakeTags<CR>
 augroup END
+
+augroup fileSyntax
+	autocmd!
+	" Enable spellcheck on text files
+	autocmd FileType text set spell
+augroup END
 "}}}

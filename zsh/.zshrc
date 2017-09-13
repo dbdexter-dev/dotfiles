@@ -9,14 +9,18 @@ local wd='%{$fg[$user_color]%}$(fish_wd)%{$reset_color%}'
 
 # Attach to the main session, or create it if it doesn't exist
 ta() {
-	tmux attach -t $master_session
-	if [[ $? -ne 0 ]]; then
-		tmux new -ds $master_session
-		#  tmux split-pane -ht $master_session
-		#  tmux resize-pane -x 78
-		#  tmux split-pane -vt $master_session
-		#  tmux resize-pane -y 19
+	if [[ $1 == "remote" ]]; then
+		tmux new-session -t $master_session
+	else
 		tmux attach -t $master_session
+		if [[ $? -ne 0 ]]; then
+			tmux new -ds $master_session
+			#  tmux split-pane -ht $master_session
+			#  tmux resize-pane -x 78
+			#  tmux split-pane -vt $master_session
+			#  tmux resize-pane -y 19
+			tmux attach -t $master_session
+		fi
 	fi
 }
 
@@ -63,7 +67,9 @@ SAVEHIST=1000
 # Multiplex the first terminal
 if [[ $- == *i* && -z $TMUX ]]; then
 	local master_status=$(tmux ls | grep $master_session | grep 'attached')
-	if [[ $master_status == "" || -n "$SSH_CONNECTION" ]]; then
-		ta
+	if [[ $master_status == "" ]]; then
+		ta "local"
+	elif [[ -n "$SSH_CONNECTION" ]]; then
+		ta "remote"
 	fi
 fi
