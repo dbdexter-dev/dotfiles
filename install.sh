@@ -39,7 +39,7 @@ set -e
 
 case $manager in
 	'pacman') sudo pacman -Sy --needed $packages;;
-	'emerge') sudo emerge --sync; sudo emerge $packages;;
+	'emerge') sudo emerge --sync; sudo emerge --ask $packages;;
 	'apt-get') sudo apt-get update; sudo apt-get install $packages;;
 	'yum') sudo yum update; sudo yum install $packages;;
 	*) echo -e 'This message should not appeear'; exit;;

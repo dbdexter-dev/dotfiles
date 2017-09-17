@@ -15,15 +15,15 @@ ta() {
 		tmux attach -t $master_session
 		if [[ $? -ne 0 ]]; then
 			tmux new -ds $master_session
-			#  tmux split-pane -ht $master_session
-			#  tmux resize-pane -x 78
-			#  tmux split-pane -vt $master_session
-			#  tmux resize-pane -y 19
+			tmux split-pane -ht $master_session
+			tmux resize-pane -x 78
+			tmux split-pane -vt $master_session
+			tmux resize-pane -y 19
 			tmux attach -t $master_session
+			tmux select-pane -t $master_session:0.0
 		fi
 	fi
 }
-
 
 bindkey -v
 bindkey '[A' up-line-or-search
@@ -65,11 +65,15 @@ SAVEHIST=1000
 # End of lines configured by zsh-newuser-install
 
 # Multiplex the first terminal
-if [[ $- == *i* && -z $TMUX ]]; then
-	local master_status=$(tmux ls | grep $master_session | grep 'attached')
-	if [[ $master_status == "" ]]; then
-		ta "local"
-	elif [[ -n "$SSH_CONNECTION" ]]; then
+if [[ $- == *i* && -z $TMUX && $TERM != "linux" ]]; then
+	# If we're connecting via ssh, attach
+	if [[ -n "$SSH_CONNECTION" ]]; then
 		ta "remote"
+	else
+		# If there is no master session OR it's not attached, attach
+		local master_status=$(tmux ls | grep $master_session | grep 'attached')
+		if [[ $master_status == "" ]]; then
+			ta "local"
+		fi
 	fi
 fi
