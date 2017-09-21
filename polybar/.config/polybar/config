@@ -41,7 +41,7 @@ font-2 = "FontAwesome:style=Regular:size=11;2"
 module-margin-left = 2
 module-margin-right = 2
 ; Modules to display, defined below
-modules-left = i3
+modules-left = hlwm
 modules-center = xwindow
 modules-right = battery date
 
