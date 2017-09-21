@@ -8,6 +8,50 @@ urgent = ${xrdb:polybar.urgent}
 [consts]
 border=3
 
+[bar/2bwm]
+; Background and foreground colors
+background = ${colors.bg}
+foreground = ${colors.fg}
+height = 25
+
+; Bar position offset
+offset-x = 0
+offset-y = 0
+border-size = ${consts.border}
+border-top-color = #00000000
+border-bottom-size = 0
+border-bottom-color = #00000000
+; Corner radius
+; radius = 2
+
+; Underline size and color
+line-size = 3
+line-color = ${colors.ind}
+
+; Padding at either side of the bar
+padding-left = 2
+padding-right = 4
+
+; Fonts
+font-0 = "SFNS Display:style=Regular:size=12;2"
+font-1 = "Noto Sans CJK JP:style=Regular:size=12;2"
+font-2 = "FontAwesome:style=Regular:size=11;2"
+
+; Module padding
+module-margin-left = 2
+module-margin-right = 2
+; Modules to display, defined below
+modules-left = i3
+modules-center = xwindow
+modules-right = battery date
+
+;  Tray position and scale
+tray-position = right
+tray-scale = 1.0
+tray-transparent = false
+tray-detached = false
+tray-offset-x = 0
+
 [bar/hlwm]
 ; Background and foreground colors
 background = ${colors.bg}
@@ -114,8 +158,6 @@ animation-charging-framerate = 750
 
 [module/hlwm]
 type = internal/xworkspaces
-enable-click = true
-enable-scroll = true
 
 label-active = %name%
 label-active-foreground = ${colors.bg}

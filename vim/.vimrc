@@ -1,4 +1,5 @@
 let g:pathogen_disabled = []
+let g:livepreview_previewer = 'evince'
 call pathogen#infect()
 
 " Syntax highlighting options
@@ -27,7 +28,7 @@ endfunction
 " Custom Commands " {{{
 command! MakeTags !ctags -R .
 
-command! PdfLatex !pdflatex %
+"command! PdfLatex silent !pdflatex -output-directory /tmp > /dev/null %
 "Write to a file when you forgot to run vim as root
 command! -bar SudoWrite w !sudo tee > /dev/null %
 command! W SudoWrite | e!
@@ -245,7 +246,8 @@ autocmd BufWritePre * %s/\s\+$//e
 augroup fileSpecificBindings
 	autocmd!
 	" Create a pdf of the current tex file with F5
-	autocmd FileType tex map <buffer> <F5> :PdfLatex<CR>
+	autocmd FileType tex map <F5> :LLPStartPreview<CR>
+	"autocmd BufWritePost *.tex :PdfLatex
 	autocmd Filetype xdefaults map <F5> :call system('xrdb '.expand('%:p'))<CR>
 	" Rebuild tags
 	autocmd FileType {c,cpp,h,hpp,nasm,asm,inc,objc} map <F5> :MakeTags<CR>
