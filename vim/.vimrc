@@ -1,4 +1,4 @@
-let g:pathogen_disabled = []
+let g:pathogen_disabled = ['vim-gutentags']
 let g:livepreview_previewer = 'evince'
 call pathogen#infect()
 
@@ -213,7 +213,7 @@ let g:ale_lint_on_text_changed = 'normal'
 let g:ale_lint_on_insert_leave = 1
 let g:ale_linters = {
 	\ 'python': [ '' ],
-	\ 'python3': [ '' ]
+	\ 'python3': [ '' ],
 	\}
 " }}}
 " Syntax Checking " {{{

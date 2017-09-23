@@ -1,3 +1,4 @@
+#include <stdlib.h>
 ///---User configurable stuff---///
 ///---Modifiers---///
 #define MOD             XCB_MOD_MASK_4       /* Super/Windows key  or check xmodmap(1) with -pm  defined in /usr/include/xcb/xproto.h */
@@ -67,6 +68,8 @@ static void halfandcentered(const Arg *arg)
 	Arg arg3 = {.i=TWOBWM_TELEPORT_CENTER};
 	teleport(&arg3);
 }
+///---Workspaces names---///
+static const char *workspaces[] = {" 一 ", " 二 ", " 三 ", " 四 ", " 五 ", " 六 ", NULL};
 ///---Shortcuts---///
 /* Check /usr/include/X11/keysymdef.h for the list of all keys
  * 0x000000 is for no modkey
@@ -102,7 +105,7 @@ static key keys[] = {
     {  MOD ,              XK_Tab,        focusnext,         {.i=TWOBWM_FOCUS_NEXT}},
     {  MOD |SHIFT,        XK_Tab,        focusnext,         {.i=TWOBWM_FOCUS_PREVIOUS}},
     // Kill a window
-    {  MOD |SHIFT,        XK_q,          deletewin,         {}},
+    {  MOD |SHIFT,              XK_q,          deletewin,         {}},
     // Resize a window
     {  MOD |SHIFT,        XK_k,          resizestep,        {.i=TWOBWM_RESIZE_UP}},
     {  MOD |SHIFT,        XK_j,          resizestep,        {.i=TWOBWM_RESIZE_DOWN}},
@@ -143,8 +146,8 @@ static key keys[] = {
     {  MOD ,              XK_End,        resizestep_aspect, {.i=TWOBWM_RESIZE_KEEP_ASPECT_SHRINK}},
     // Full screen window without borders
     {  MOD ,              XK_x,         maximize,          {.i=TWOBWM_FULLSCREEN}},
-    // Lock the screen
-    {  MOD |SHIFT,       XK_x,          start,          {.com = lockscreen}},
+    //Full screen window without borders overiding offsets
+    {  MOD |SHIFT ,       XK_x,          maximize,          {.i=TWOBWM_FULLSCREEN_OVERRIDE_OFFSETS}},
     // Maximize vertically
     {  MOD ,              XK_m,          maxvert_hor,       {.i=TWOBWM_MAXIMIZE_VERTICALLY}},
     // Maximize horizontally
@@ -186,7 +189,7 @@ static key keys[] = {
     // Iconify the window
     //{  MOD ,              XK_i,          hide,              {}},
     // Make the window unkillable
-    // {  MOD ,              XK_a,          unkillable,        {}},
+    {  MOD ,              XK_a,          unkillable,        {}},
     // Make the window appear always on top
     {  MOD,               XK_t,          always_on_top,     {}},
     // Make the window stay on all workspaces
@@ -230,3 +233,4 @@ static Button buttons[] = {
     {  MOD|ALT,    XCB_BUTTON_INDEX_1,     changescreen,    {.i=1}, false},
     {  MOD|ALT,    XCB_BUTTON_INDEX_3,     changescreen,    {.i=0}, false}
 };
+#endif

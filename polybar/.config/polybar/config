@@ -41,7 +41,7 @@ font-2 = "FontAwesome:style=Regular:size=11;2"
 module-margin-left = 2
 module-margin-right = 2
 ; Modules to display, defined below
-modules-left = hlwm
+modules-left = desktops
 modules-center = xwindow
 modules-right = battery date
 
@@ -86,7 +86,7 @@ font-2 = "FontAwesome:style=Regular:size=11;2"
 module-margin-left = 2
 module-margin-right = 2
 ; Modules to display, defined below
-modules-left = hlwm
+modules-left = desktops
 modules-center = xwindow
 modules-right = battery date
 
@@ -156,7 +156,7 @@ animation-charging-1 = " "
 animation-charging-0 = " "
 animation-charging-framerate = 750
 
-[module/hlwm]
+[module/desktops]
 type = internal/xworkspaces
 
 label-active = %name%

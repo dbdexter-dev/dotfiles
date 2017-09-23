@@ -5,7 +5,14 @@ local master_session='shenanigans'
 local fish_wd() {
 	pwd | sed -e "s|^$HOME|~|;"'s|\([^/.]\)[^/]*/|\1/|g'
 }
+
+local git_prompt_func() {
+	local branch=$(git status 2>/dev/null | grep branch -m1 | cut -d" " -f3)
+	echo "$branch"
+}
+
 local wd='%{$fg[$user_color]%}$(fish_wd)%{$reset_color%}'
+local git_prompt='$(git_prompt_func)'
 
 # Attach to the main session, or create it if it doesn't exist
 ta() {
@@ -25,10 +32,10 @@ ta() {
 	fi
 }
 
+
 bindkey -v
 bindkey '[A' up-line-or-search
 bindkey '[B' down-line-or-search
-
 
 alias ls="ls --color=auto"
 alias vi="vim"
@@ -37,9 +44,8 @@ alias gdb="gdb -q"
 autoload -U colors && colors
 setopt promptsubst
 
-
 PROMPT="%n@%m ${wd}> "
-RPROMPT="%{$fg_bold[red]%}%(?..%?)%{$reset_color%}"
+RPROMPT="%{$fg[yellow]%}${git_prompt}%{$reset_color%}"
 
 # The following lines were added by compinstall
 
@@ -76,4 +82,10 @@ if [[ $- == *i* && -z $TMUX && $TERM != "linux" ]]; then
 			ta "local"
 		fi
 	fi
+fi
+
+# If there's any non-attached session still running, attach
+local tmp_session=$(tmux ls | grep -v 'attached' | cut -d":" -f1)
+if [[ -z $TMUX && $tmp_session != "" ]]; then
+	tmux attach -t $tmp_session
 fi
