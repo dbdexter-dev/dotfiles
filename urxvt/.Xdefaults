@@ -17,32 +17,33 @@ URxvt.cursorBlink: false
 
 URxvt.depth:32
 URxvt.background: rgba:2e00/3400/4000/e000
-URxvt.foreground: #eeeeff
+URxvt.foreground: #ffffff
 
 ; Black
 URxvt.color0:	#263238
-URxvt.color8:	#556677
+URxvt.color8:	#909090
 ; Red
-URxvt.color1:	#776655
-URxvt.color9:	#776655
+URxvt.color1:	#dd8855
+URxvt.color9:	#dd8855
 ; Green
-URxvt.color2:	#99aa44
-URxvt.color10:	#99aa44
+URxvt.color2:	#88bb55
+URxvt.color10:	#88bb55
+; URxvt.color10:	#4caf50
 ; Yellow
-URxvt.color3:	#ffeebb
-URxvt.color11:	#ffeebb
+URxvt.color3:	#ccdd55
+URxvt.color11:	#ccdd55
 ; Blue
 URxvt.color4:	#1199dd
 URxvt.color12:	#1199dd
 ; Magenta
-URxvt.color5:	#55aadd
-URxvt.color13:	#55aadd
+URxvt.color5:	#55bbcc
+URxvt.color13:	#55bbcc
 ; Cyan
-URxvt.color6:	#66eeff
-URxvt.color14:	#66eeff
+URxvt.color6:	#99ccdd
+URxvt.color14:	#99ccdd
 ; White
-URxvt.color7:	#8899aa
-URxvt.color15:	#ddeeff
+URxvt.color7:	#cccccc
+URxvt.color15:	#ffffff
 
 URxvt.perl-ext-common: matcher
 URxvt.url-launcher: /usr/bin/xdg-open

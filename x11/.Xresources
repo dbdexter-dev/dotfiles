@@ -21,6 +21,8 @@ i3wm.fgcolor: TEXT
 i3wm.indcolor: IND
 i3wm.urgentcolor: URG
 
+twobwm.enable_compton: true
+
 rofi.color-enabled: true
 rofi.color-window: BG, IND, IND
 rofi.color-normal: BG, UNSEL, INACTIVE_BG, IND, BG

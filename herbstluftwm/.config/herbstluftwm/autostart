@@ -19,7 +19,6 @@ statusbar_border=3
 
 hc emit_hook reload
 
-
 # remove all existing keybindings
 hc keyunbind --all
 
@@ -36,20 +35,12 @@ hc keybind $Mod-Shift-Return spawn urxvtd -q -o -f
 
 # basic movement
 # focusing clients
-hc keybind $Mod-Left  focus left
-hc keybind $Mod-Down  focus down
-hc keybind $Mod-Up    focus up
-hc keybind $Mod-Right focus right
 hc keybind $Mod-h     focus left
 hc keybind $Mod-j     focus down
 hc keybind $Mod-k     focus up
 hc keybind $Mod-l     focus right
 
 # moving clients
-hc keybind $Mod-Shift-Left  shift left
-hc keybind $Mod-Shift-Down  shift down
-hc keybind $Mod-Shift-Up    shift up
-hc keybind $Mod-Shift-Right shift right
 hc keybind $Mod-Shift-h     shift left
 hc keybind $Mod-Shift-j     shift down
 hc keybind $Mod-Shift-k     shift up
@@ -68,10 +59,6 @@ hc keybind $Mod-Control-h       resize left +$resizestep
 hc keybind $Mod-Control-j       resize down +$resizestep
 hc keybind $Mod-Control-k       resize up +$resizestep
 hc keybind $Mod-Control-l       resize right +$resizestep
-hc keybind $Mod-Control-Left    resize left +$resizestep
-hc keybind $Mod-Control-Down    resize down +$resizestep
-hc keybind $Mod-Control-Up      resize up +$resizestep
-hc keybind $Mod-Control-Right   resize right +$resizestep
 
 # tags
 tag_names=( " 一 " " 二 " " 三 " " 四 " " 五 " " 六 " ) #" 七 " " 八 " " 九 " " 十 ")
@@ -92,11 +79,6 @@ for i in ${!tag_names[@]} ; do
         hc keybind "$Mod-Shift-$key" move_index "$i"
     fi
 done
-
-
-# cycle through tags
-hc keybind $Mod-period use_index +1 --skip-visible
-hc keybind $Mod-comma  use_index -1 --skip-visible
 
 # layouting
 hc keybind $Mod-r remove
@@ -134,21 +116,17 @@ hc keybind $Mod-w spawn rofi -show weather -modi "weather:~/.config/rofi/weather
 hc keybind Print spawn scrot ~/Screenshots/%Y-%m-%d-%H:%M:%S_sshot.png
 hc keybind $Mod-Shift-x spawn ~/.config/herbstluftwm/lock.sh
 
-
 # multimedia keys
 hc keybind XF86AudioMute spawn amixer set Master toggle						# Toggle mute-unmute
 hc keybind XF86AudioLowerVolume spawn amixer set Master 5%-					# Lower volume
 hc keybind XF86AudioRaiseVolume spawn amixer set Master 5%+					# Increase volume
 hc keybind XF86MonBrightnessUp spawn ~/.config/herbstluftwm/backlight up		# Increase screen brightness
 hc keybind XF86MonBrightnessDown spawn ~/.config/herbstluftwm/backlight down	# Decrease screen brightness
-hc keybind XF86AudioPrev spawn mocp -r		# Previous track
-hc keybind XF86AudioNext spawn mocp -f		# Next track
-hc keybind XF86AudioPlay spawn mocp -G		# Toggle play-pause
 
 # theme
 hc attr theme.tiling.reset 1
 hc attr theme.floating.reset 1
-hc set frame_border_active_color $inactive_color
+hc set frame_border_active_color $border_color
 hc set frame_border_normal_color $inactive_color
 hc set frame_bg_normal_color $inactive_color
 hc set frame_bg_active_color $border_color
@@ -156,25 +134,25 @@ hc set frame_border_width 0
 hc set always_show_frame 0
 hc set frame_bg_transparent 1
 hc set frame_transparent_width 0
-hc set frame_gap $statusbar_border
+hc set frame_gap 0
 
 hc attr theme.active.color $border_color
 hc attr theme.normal.color $inactive_color
 hc attr theme.urgent.color $urgent_color
-hc attr theme.inner_width 1
+hc attr theme.inner_width 0
 hc attr theme.inner_color black
 hc attr theme.border_width 2
 hc attr theme.floating.border_width 4
-hc attr theme.floating.outer_width 1
+hc attr theme.floating.outer_width 0
 hc attr theme.floating.outer_color black
 hc attr theme.active.inner_color $inactive_color
 hc attr theme.active.outer_color $inactive_color
 hc attr theme.background_color black
 
-hc set window_gap 0
+hc set window_gap 10
 hc set frame_padding 0
-hc set smart_window_surroundings 1
-hc set smart_frame_surroundings 0
+hc set smart_window_surroundings 0
+hc set smart_frame_surroundings 1
 hc set mouse_recenter_gap 0
 hc set focus_follows_mouse 1
 
@@ -184,14 +162,8 @@ hc unrule -F
 hc rule focus=on # normally focus new clients
 #hc rule focus=off # normally do not focus new clients
 
-# Floating overlay monitor
-#hc add_monitor 1900x1080+10+0 "${tag_names[5]}" overlay
-#hc floating "${tag_names[5]}" on
-#hc lock_tag overlay
-
 # status bar padding
 hc pad 0 $(($statusbar_height + $statusbar_border)) 0 0 0
-#hc pad overlay $(($statusbar_height+5)) 0 0 0
 
 hc rule windowtype~'_NET_WM_WINDOW_TYPE_(DIALOG|UTILITY|SPLASH)' pseudotile=on focus=on
 hc rule windowtype~'_NET_WM_WINDOW_TYPE_(NOTIFICATION|DOCK|DESKTOP)' manage=off
@@ -200,7 +172,6 @@ hc rule windowtype~'_NET_WM_WINDOW_TYPE_(NOTIFICATION|DOCK|DESKTOP)' manage=off
 hc unlock
 
 herbstclient set tree_style '╾│ ├└╼─┐'
-
 herbstclient chain "${cmds[@]}" &
 
 # do multi monitor setup here, e.g.:

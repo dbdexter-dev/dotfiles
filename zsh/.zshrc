@@ -71,21 +71,12 @@ SAVEHIST=1000
 # End of lines configured by zsh-newuser-install
 
 # Multiplex the first terminal
-if [[ $- == *i* && -z $TMUX && $TERM != "linux" ]]; then
-	# If we're connecting via ssh, attach
-	if [[ -n "$SSH_CONNECTION" ]]; then
-		ta "remote"
-	else
-		# If there is no master session OR it's not attached, attach
-		local master_status=$(tmux ls | grep $master_session | grep 'attached')
-		if [[ $master_status == "" ]]; then
-			ta "local"
-		fi
-	fi
+if [[ $- == *i* && -z $TMUX && $TERM != "linux" && -n "$SSH_CONNECTION" ]]; then
+	ta "remote"
 fi
 
 # If there's any non-attached session still running, attach
-local tmp_session=$(tmux ls | grep -v 'attached' | cut -d":" -f1)
+local tmp_session=$(tmux ls 2>/dev/null | grep -v 'attached' | grep -v $master_session | cut -d":" -f1)
 if [[ -z $TMUX && $tmp_session != "" ]]; then
 	tmux attach -t $tmp_session
 fi
