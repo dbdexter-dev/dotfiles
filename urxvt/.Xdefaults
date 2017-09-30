@@ -16,31 +16,30 @@ URxvt.cursorUnderline: false
 URxvt.cursorBlink: false
 
 URxvt.depth:32
-URxvt.background: rgba:2e00/3400/4000/e000
+URxvt.background: rgba:3000/3100/4900/e000
 URxvt.foreground: #ffffff
 
 ; Black
 URxvt.color0:	#263238
 URxvt.color8:	#909090
 ; Red
-URxvt.color1:	#dd8855
-URxvt.color9:	#dd8855
+URxvt.color1:	#ee9944
+URxvt.color9:	#ee9944
 ; Green
-URxvt.color2:	#88bb55
-URxvt.color10:	#88bb55
-; URxvt.color10:	#4caf50
+URxvt.color2:	#bbaa66
+URxvt.color10:	#bbaa66
 ; Yellow
-URxvt.color3:	#ccdd55
-URxvt.color11:	#ccdd55
+URxvt.color3:	#ffcc88
+URxvt.color11:	#ffcc88
 ; Blue
-URxvt.color4:	#1199dd
-URxvt.color12:	#1199dd
+URxvt.color4:	#bbaacc
+URxvt.color12:	#bbaacc
 ; Magenta
-URxvt.color5:	#55bbcc
-URxvt.color13:	#55bbcc
+URxvt.color5:	#bb9999
+URxvt.color13:	#bb9999
 ; Cyan
-URxvt.color6:	#99ccdd
-URxvt.color14:	#99ccdd
+URxvt.color6:	#ffffcc
+URxvt.color14:	#ffffcc
 ; White
 URxvt.color7:	#cccccc
 URxvt.color15:	#ffffff

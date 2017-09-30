@@ -163,17 +163,17 @@ label-active = %name%
 label-active-foreground = ${colors.bg}
 #label-active-underline = ${colors.ind}
 label-active-background = ${colors.ind}
-label-active-padding = 1
+label-active-padding = 2
 
 label-urgent = %name%
 label-urgent-foreground = ${colors.fg}
 label-urgent-background = ${colors.bg}
 label-urgent-underline = ${colors.urgent}
-label-urgent-padding = 1
+label-urgent-padding = 2
 
 label-empty = %name%
 label-empty-foreground = ${colors.fg}
-label-empty-padding = 1
+label-empty-padding = 2
 
 [module/i3]
 type = internal/i3

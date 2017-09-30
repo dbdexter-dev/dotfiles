@@ -5,6 +5,7 @@ call pathogen#infect()
 " Syntax highlighting options
 syntax on
 set background=dark
+let g:tex_fast = ""
 
 colorscheme material
 hi! Normal ctermbg=None
@@ -28,7 +29,7 @@ endfunction
 " Custom Commands " {{{
 command! MakeTags !ctags -R .
 
-"command! PdfLatex silent !pdflatex -output-directory /tmp > /dev/null %
+command! PdfLatex !pdflatex -output-directory /tmp %
 "Write to a file when you forgot to run vim as root
 command! -bar SudoWrite w !sudo tee > /dev/null %
 command! W SudoWrite | e!
@@ -237,21 +238,24 @@ augroup END
 augroup autoFileRecognition
 	autocmd!
 	autocmd BufRead,BufNewFile *.xm set filetype=objc
-	autocmd BufRead,BufNewFile *.nasm,*.asm set filetype=nasm
+	autocmd BufRead,BufNewFile *.Xdefaults set filetype=xdefaults
+	autocmd BufRead,BufNewFile *.tex set tw=100
+	autocmd BufRead,BufNewFile *.nasm,*.asm,*.inc set filetype=nasm
 augroup END
 
 " Automatically remove trailing space at the end of lines
-autocmd BufWritePre * %s/\s\+$//e
+"autocmd BufWritePre * %s/\s\+$//e
 
 augroup fileSpecificBindings
 	autocmd!
 	" Create a pdf of the current tex file with F5
-	autocmd FileType tex map <F5> :LLPStartPreview<CR>
+	autocmd FileType tex map <F5> :PdfLatex<CR>
 	"autocmd BufWritePost *.tex :PdfLatex
 	autocmd Filetype xdefaults map <F5> :call system('xrdb '.expand('%:p'))<CR>
 	" Rebuild tags
 	autocmd FileType {c,cpp,h,hpp,nasm,asm,inc,objc} map <F5> :MakeTags<CR>
 augroup END
+
 
 augroup fileSyntax
 	autocmd!
