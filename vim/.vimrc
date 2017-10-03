@@ -1,5 +1,5 @@
 let g:pathogen_disabled = ['vim-gutentags']
-let g:livepreview_previewer = 'evince'
+let g:livepreview_previewer = 'zathura'
 call pathogen#infect()
 
 " Syntax highlighting options

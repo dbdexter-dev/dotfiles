@@ -34,6 +34,7 @@ rofi.eh: 1
 rofi.bw: 0
 rofi.width: 500
 
+rofi.kb-row-tab:		Shift+Tab
 rofi.kb-mode-next:		Tab
 rofi.kb-mode-previous:	Control+Tab
 

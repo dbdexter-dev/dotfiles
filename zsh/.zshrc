@@ -1,7 +1,7 @@
 # Zsh config file
 
 local user_color='green'
-local master_session='shenanigans'
+local master_session='master'
 local fish_wd() {
 	pwd | sed -e "s|^$HOME|~|;"'s|\([^/.]\)[^/]*/|\1/|g'
 }
@@ -25,7 +25,7 @@ ta() {
 			tmux split-pane -ht $master_session
 			tmux resize-pane -x 78
 			tmux split-pane -vt $master_session
-			tmux resize-pane -y 19
+			tmux resize-pane -y 35
 			tmux attach -t $master_session
 			tmux select-pane -t $master_session:0.0
 		fi
