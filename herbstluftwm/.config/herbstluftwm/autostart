@@ -159,7 +159,7 @@ hc set frame_padding 0
 hc set smart_window_surroundings 0
 hc set smart_frame_surroundings 0
 hc set mouse_recenter_gap 0
-hc set focus_follows_mouse 0
+hc set focus_follows_mouse 1
 
 # rules
 hc unrule -F
@@ -171,6 +171,7 @@ hc rule focus=on # normally focus new clients
 hc pad 0 $(($statusbar_height + $statusbar_border)) 0 0 0
 
 hc rule windowtype~'_NET_WM_WINDOW_TYPE_(DIALOG|UTILITY|SPLASH)' pseudotile=on focus=on
+hc rule class='Pinentry' pseudotile=on
 hc rule windowtype~'_NET_WM_WINDOW_TYPE_(NOTIFICATION|DOCK|DESKTOP)' manage=off
 
 # unlock, just to be sure

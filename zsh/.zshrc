@@ -23,11 +23,11 @@ ta() {
 		if [[ $? -ne 0 ]]; then
 			tmux new -ds $master_session
 			tmux split-pane -ht $master_session
-			tmux resize-pane -x 78
+			tmux resize-pane -x 20
 			tmux split-pane -vt $master_session
 			tmux resize-pane -y 35
-			tmux attach -t $master_session
 			tmux select-pane -t $master_session:0.0
+			tmux attach -t $master_session
 		fi
 	fi
 }
@@ -41,6 +41,7 @@ bindkey '[B' down-line-or-search
 alias ls="ls --color=auto"
 alias vi="vim"
 alias gdb="gdb -q"
+alias tree="tree -C"
 #alias cd="cd -P"	# When cd-ing into a symlink, cd into the directory the link is pointing to
 autoload -U colors && colors
 setopt promptsubst
@@ -71,13 +72,19 @@ HISTSIZE=1000
 SAVEHIST=1000
 # End of lines configured by zsh-newuser-install
 
-# Multiplex the first terminal
+# Multiplex every remote terminal
 if [[ $- == *i* && -z $TMUX && $TERM != "linux" && -n "$SSH_CONNECTION" ]]; then
 	ta "remote"
 fi
 
-# If there's any non-attached session still running, attach
-local tmp_session=$(tmux ls 2>/dev/null | grep -v 'attached' | grep -v $master_session | cut -d":" -f1)
-if [[ -z $TMUX && $tmp_session != "" ]]; then
-	tmux attach -t $tmp_session
+# TTY adheres to colorscheme now
+if [[ "$TERM" == "linux" ]]; then
+	while read -r line
+	do
+		colorNum=$(rax2 $(echo $line | sed -e 's/.*\.color\([0-9]*\).*/\1/g') | cut -d"x" -f2)
+		if [[ $colorNum -ne 0 ]]; then
+			colorCode=$(echo $line | sed -e 's/.*#\([0-9a-f].*\).*/\1/g')
+		fi
+		echo -en "\e]P${colorNum}${colorCode}"
+	done < <(grep "color[0-9]" ~/.Xdefaults)
 fi
