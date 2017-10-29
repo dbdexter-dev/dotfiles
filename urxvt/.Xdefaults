@@ -4,9 +4,9 @@ URxvt.secondaryScroll: 0
 URxvt.inputMethod: ibus
 URxvt.predictType: OverTheSpot
 URxvt.font:	xft:Monaco for Powerline:size=11:hintstyle=hintfull:dpi=96, \
-			xft:Kochi Gothic:size=12:antialias=true:dpi=96, \
-			xft:Noto Emoji:size=12:antialias=true:dpi=96, \
-			xft:Noto Color Emoji:size=12:antialias=true:dpi=96
+			xft:Kochi Gothic:pixelsize=14:antialias=true:dpi=96, \
+			xft:Noto Emoji:size=12:antialias=true, \
+			xft:Noto Color Emoji:size=12:antialias=true
 URxvt.letterSpace: -2
 URxvt.scrollBar: false
 URxvt.termName: xterm-256color
@@ -23,23 +23,23 @@ URxvt.foreground: #ffffff
 URxvt.color0:	#263238
 URxvt.color8:	#909090
 ; Red
-URxvt.color1:	#ee6677
-URxvt.color9:	#ee6677
+URxvt.color1:	#dd4411
+URxvt.color9:	#dd4411
 ; Green
 URxvt.color2:	#88aa77
 URxvt.color10:	#88aa77
 ; Yellow
-URxvt.color3:	#ff8866
-URxvt.color11:	#ff8866
+URxvt.color3:	#dd8833
+URxvt.color11:	#dd8833
 ; Blue
-URxvt.color4:	#55bbbb
-URxvt.color12:	#55bbbb
+URxvt.color4:	#8899aa
+URxvt.color12:	#8899aa
 ; Magenta
-URxvt.color5:	#cc5566
-URxvt.color13:	#cc5566
+URxvt.color5:	#aa7755
+URxvt.color13:	#aa7755
 ; Cyan
-URxvt.color6:	#aaddbb
-URxvt.color14:	#aaddbb
+URxvt.color6:	#ddaa77
+URxvt.color14:	#ddaa77
 ; White
 URxvt.color7:	#cccccc
 URxvt.color15:	#ffffff

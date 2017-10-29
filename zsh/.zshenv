@@ -1,6 +1,6 @@
 # ZSH environment config
 
-export THEOS=/opt/theos
+export THEOS=~/theos
 export PATH="$HOME/.local":"$HOME/.local/bin":$THEOS/bin:$PATH
 export EDITOR="vim"
 export BROWSER="firefox"

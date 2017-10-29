@@ -3,16 +3,11 @@
 local user_color='green'
 local master_session='master'
 local fish_wd() {
-	pwd | sed -e "s|^$HOME|~|;"'s|\([^/.]\)[^/]*/|\1/|g'
+	pwd | sed -e "s|^$HOME|~|;s|\([^/.]\)[^/]*/|\1/|g"
 }
 
-local git_prompt_func() {
-	local branch=$(git status 2>/dev/null | grep branch -m1 | cut -d" " -f3)
-	echo "$branch"
-}
 
 local wd='%{$fg[$user_color]%}$(fish_wd)%{$reset_color%}'
-local git_prompt='$(git_prompt_func)'
 
 # Attach to the main session, or create it if it doesn't exist
 ta() {
@@ -34,20 +29,11 @@ ta() {
 
 
 source ~/.zshenv
-bindkey -v
-bindkey '[A' up-line-or-search
-bindkey '[B' down-line-or-search
 
-alias ls="ls --color=auto"
-alias vi="vim"
-alias gdb="gdb -q"
-alias tree="tree -C"
-#alias cd="cd -P"	# When cd-ing into a symlink, cd into the directory the link is pointing to
 autoload -U colors && colors
 setopt promptsubst
 
 PROMPT="%n@%m ${wd}> "
-RPROMPT="%{$fg[yellow]%}${git_prompt}%{$reset_color%}"
 
 # The following lines were added by compinstall
 
@@ -72,6 +58,20 @@ HISTSIZE=1000
 SAVEHIST=1000
 # End of lines configured by zsh-newuser-install
 
+alias ls="ls --color=auto"
+alias vi="vim"
+alias gdb="gdb -q"
+alias tree="tree -C"
+alias hc="herbstclient"
+#alias cd="cd -P"	# When cd-ing into a symlink, cd into the directory the link is pointing to
+
+bindkey -v
+bindkey -r '[A'
+bindkey -r '[B'
+bindkey -r '/'
+bindkey '' history-beginning-search-backward
+bindkey '' history-beginning-search-backward
+
 # Multiplex every remote terminal
 if [[ $- == *i* && -z $TMUX && $TERM != "linux" && -n "$SSH_CONNECTION" ]]; then
 	ta "remote"
@@ -87,4 +87,9 @@ if [[ "$TERM" == "linux" ]]; then
 		fi
 		echo -en "\e]P${colorNum}${colorCode}"
 	done < <(grep "color[0-9]" ~/.Xdefaults)
+fi
+
+
+if [[ -z $DISPLAY ]] && [[ $(tty) = /dev/tty1 ]]; then 
+	exec startx
 fi

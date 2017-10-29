@@ -6,51 +6,7 @@ active = ${xrdb:polybar.active_color}
 urgent = ${xrdb:polybar.urgent}
 
 [consts]
-border=3
-
-[bar/2bwm]
-; Background and foreground colors
-background = ${colors.bg}
-foreground = ${colors.fg}
-height = 25
-
-; Bar position offset
-offset-x = 0
-offset-y = 0
-border-size = ${consts.border}
-border-top-color = #00000000
-border-bottom-size = 0
-border-bottom-color = #00000000
-; Corner radius
-; radius = 2
-
-; Underline size and color
-line-size = 3
-line-color = ${colors.ind}
-
-; Padding at either side of the bar
-padding-left = 2
-padding-right = 4
-
-; Fonts
-font-0 = "SFNS Display:style=Regular:size=12;2"
-font-1 = "Noto Sans CJK JP:style=Regular:size=12;2"
-font-2 = "FontAwesome:style=Regular:size=11;2"
-
-; Module padding
-module-margin-left = 2
-module-margin-right = 2
-; Modules to display, defined below
-modules-left = desktops
-modules-center = xwindow
-modules-right = battery date
-
-;  Tray position and scale
-tray-position = right
-tray-scale = 1.0
-tray-transparent = false
-tray-detached = false
-tray-offset-x = 0
+border=0
 
 [bar/hlwm]
 ; Background and foreground colors
@@ -74,8 +30,8 @@ line-size = 3
 line-color = ${colors.ind}
 
 ; Padding at either side of the bar
-padding-left = 2
-padding-right = 4
+padding-left = 0
+padding-right = 2
 
 ; Fonts
 font-0 = "SFNS Display:style=Regular:size=12;2"
@@ -101,8 +57,8 @@ tray-offset-x = 0
 type = internal/date
 interval = 2.0
 
-date = " "
-date-alt = "%a, %b %d -"
+; date = " "
+date = "%a, %b %d -"
 
 time = "%H:%M"
 time-alt = "%H:%M"
@@ -114,26 +70,6 @@ type = internal/xwindow
 format-foreground = ${colors.fg}
 format-padding = 4
 label-maxlen = 100
-
-[module/backlight]
-type = internal/backlight
-interval = 5.0
-label =  %percentage%%
-card = intel_backlight
-
-[module/volume]
-type = internal/volume
-interval = 2.0
-
-format-volume = <ramp-volume>
-format-muted-prefix = " "
-ramp-volume-0 = ""
-ramp-volume-1 = ""
-ramp-volume-2 = ""
-ramp-volume-3 = ""
-
-scroll-up = herbstclient spawn pactl set-sink-volume 0 +5%
-scroll-down = herbstclient spawn pactl set-sink-volume 0 -5
 
 [module/battery]
 type = internal/battery
@@ -158,60 +94,29 @@ animation-charging-framerate = 750
 
 [module/desktops]
 type = internal/xworkspaces
+icon-0 = 1;"一"
+icon-1 = 2;"二"
+icon-2 = 3;"三"
+icon-3 = 4;"四"
+icon-4 = 5;"五"
+icon-5 = 6;"六"
 
-label-active = %name%
+format = <label-state>
+
+label-active = %icon%
 label-active-foreground = ${colors.bg}
 #label-active-underline = ${colors.ind}
 label-active-background = ${colors.ind}
 label-active-padding = 2
 
-label-urgent = %name%
+label-urgent = %icon%
 label-urgent-foreground = ${colors.fg}
 label-urgent-background = ${colors.bg}
 label-urgent-underline = ${colors.urgent}
 label-urgent-padding = 2
 
-label-empty = %name%
+label-empty = %icon%
 label-empty-foreground = ${colors.fg}
 label-empty-padding = 2
-
-[module/i3]
-type = internal/i3
-enable-click = true
-enable-scroll = true
-ws-icon-0 = 1;"一"
-ws-icon-1 = 2;"二"
-ws-icon-2 = 3;"三"
-ws-icon-3 = 4;"四"
-ws-icon-4 = 5;"五"
-ws-icon-5 = 6;"六"
-
-format = <label-state> <label-mode>
-
-label-mode = %mode%
-label-mode-foreground = ${colors.bg}
-label-mode-background = ${colors.ind}
-label-mode-padding = 2
-
-label-focused = %icon%
-label-focused-foreground = ${colors.bg}
-label-focused-background = ${colors.ind}
-label-focused-padding = 2
-
-label-unfocused = %icon%
-label-unfocused-foreground = ${colors.fg}
-label-unfocused-background = ${colors.bg}
-label-unfocused-padding = 2
-
-label-visible = %icon%
-label-visible-foreground = ${colors.fg}
-label-visible-background = ${colors.bg}
-label-visible-padding = 2
-
-[module/redshift]
-type = custom/script
-interval = 5
-exec = ~/.config/polybar/redshift.sh
-
 
 ; vim: ft=dosini

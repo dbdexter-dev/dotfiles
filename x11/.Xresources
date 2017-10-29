@@ -1,8 +1,8 @@
 !Color scheme to be adopted by as many applications as possible
 #define BG #303149
 #define TEXT #ffffff
-#define INACTIVE_BG #2e3440
-#define IND #cc5566
+#define INACTIVE_BG #303149
+#define IND #ddaa77
 #define UNSEL #ffffff
 #define URG #ee9944
 
@@ -33,6 +33,8 @@ rofi.lines: 6
 rofi.eh: 1
 rofi.bw: 0
 rofi.width: 500
+!rofi.show-icons: true
+rofi.matching: fuzzy
 
 rofi.kb-row-tab:		Shift+Tab
 rofi.kb-mode-next:		Tab
