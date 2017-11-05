@@ -1,0 +1,77 @@
+[global]
+font = SFNS Display Regular 12
+allow_markup = yes
+plain_text = no
+
+format = "<b>%s</b>\n%b"
+
+sort = no
+indicate_hidden = yes
+alignment = left
+
+bounce_freq = 0
+show_age_threshold = -1
+
+word_wrap = yes
+ignore_newline = no
+
+stack_duplicate = yes
+hide_duplicates_count = yes
+
+geometry = "300x50+1608+37"
+
+shrink = no
+
+transparency = 10
+
+idle_threshold = 240
+
+monitor = 0
+follow = none
+
+sticky_history = yes
+history_length = 5
+
+show_indicators = yes
+
+line_height = 0
+separator_height = 0
+padding = 8
+horizontal_padding = 8
+
+separator_color = auto
+startup_notification = false
+
+browser = firefox
+icon_position = right
+max_icon_size = 80
+icon_folders = /usr/share/icons/Papirus-Dark/16x16/actions/:/usr/share/icons/Papirus-Dark/16x16/apps/:/usr/share/icons/Papirus-Dark/16x16/devices/:/usr/share/icons/Papirus-Dark/16x16/mimetypes/
+
+
+[frame]
+	width = 2
+	color = "#81a1c1"
+
+[shortcuts]
+	close = ctrl+space
+	close_all = ctrl+shift+space
+	history = ctrl+grave
+	context = ctrl+shift+period
+
+[urgency-low]
+    background = "#2e3440"
+    foreground = "#eceff4"
+	timeout = 3
+
+[urgency_normal]
+	background = "#2e3440"
+	foreground = "#eceff4"
+	timeout = 3
+
+[urgency_critical]
+	background = "#2e3440"
+	foreground = "#eceff4"
+	timeout = 0
+
+
+# vim:ft=cfg

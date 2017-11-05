@@ -4,7 +4,7 @@ export THEOS=~/theos
 export PATH="$HOME/.local":"$HOME/.local/bin":$THEOS/bin:$PATH
 export EDITOR="vim"
 export BROWSER="firefox"
-export TERMINAL="urxvt"
+export TERMINAL="st"
 export SUDO_EDITOR="vim"
 export RANGER_LOAD_DEFAULT_RC="FALSE"
 

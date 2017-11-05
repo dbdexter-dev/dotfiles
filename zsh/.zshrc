@@ -27,6 +27,12 @@ ta() {
 	fi
 }
 
+tm() {
+	if ! tmux attach -t "mpsyt"; then
+		tmux new -ds "mpsyt"
+		tmux attach -t "mpsyt"
+	fi
+}
 
 source ~/.zshenv
 
@@ -46,7 +52,6 @@ zstyle ':completion:*' list-prompt %SAt %p: Hit TAB for more, or the character t
 zstyle ':completion:*' matcher-list '' 'm:{[:lower:]}={[:upper:]}' 'r:|[._-]=* r:|=*'
 zstyle ':completion:*' max-errors 2
 zstyle ':completion:*:cd:*' file-patterns '*(/):directories'
-zstyle ':completion:*:ls:*' file-patterns '*(/):directories'
 zstyle :compinstall filename "$HOME/.zshrc"
 
 autoload -Uz compinit
@@ -62,7 +67,6 @@ alias ls="ls --color=auto"
 alias vi="vim"
 alias gdb="gdb -q"
 alias tree="tree -C"
-alias hc="herbstclient"
 #alias cd="cd -P"	# When cd-ing into a symlink, cd into the directory the link is pointing to
 
 bindkey -v
@@ -86,10 +90,10 @@ if [[ "$TERM" == "linux" ]]; then
 			colorCode=$(echo $line | sed -e 's/.*#\([0-9a-f].*\).*/\1/g')
 		fi
 		echo -en "\e]P${colorNum}${colorCode}"
-	done < <(grep "color[0-9]" ~/.Xdefaults)
+	done < <(grep "color[0-9]" ~/.Xresources)
 fi
 
 
 if [[ -z $DISPLAY ]] && [[ $(tty) = /dev/tty1 ]]; then 
-	exec startx
+ 	exec startx
 fi

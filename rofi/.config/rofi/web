@@ -1,7 +1,0 @@
-#!/bin/bash
-
-[[ -n $@ ]] || exit
-QUERY=$(sed -e "s/ /+/g" <<< $@)
-
-xdg-open "https://www.google.com/search?q=$QUERY"
-killall rofi

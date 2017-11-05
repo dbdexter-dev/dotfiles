@@ -45,7 +45,7 @@ case $manager in
 	*) echo -e 'This message should not appeear'; exit;;
 esac
 
-sudo chsh -s $(which zsh)
+chsh -s $(which zsh)
 
 echo -e "${green}==> Installing vim plugins...$normal"
 cd $HOME
