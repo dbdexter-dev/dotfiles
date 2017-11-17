@@ -1,13 +1,68 @@
 # Zsh config file
 
-local user_color='green'
+local user_color='blue'
 local master_session='master'
-local fish_wd() {
+local fish_wd() 
+{
 	pwd | sed -e "s|^$HOME|~|;s|\([^/.]\)[^/]*/|\1/|g"
 }
 
+local season()
+{
+	local month="$(date +%m)"
+	local day="$(date +%d)"
+	local season="unk"
+	case "$month" in
+		1|2)
+			season=4 ;;
+		3)
+			if [[ $day -lt 21 ]]; then
+				season=4
+			else
+				season=1
+			fi
+			;;
+		4|5)
+			season=1 ;;
+		6)
+			if [[ $day -lt 21 ]]; then
+				season=1
+			else
+				season=2
+			fi
+			;;
+		7|8)
+			season=2 ;;
+		9)
+			if [[ $day -lt 23 ]]; then
+				season=2
+			else
+				season=3
+			fi
+			;;
+		10|11)
+			season=3 ;;
+		12)
+			if [[ $day -lt 22 ]]; then
+				season=3
+			else
+				season=4
+			fi
+			;;
+	esac
+	case "$season" in
+		1)
+			echo -n '%{$fg[green]%}春%{$reset_color%}' ;;
+		2)
+			echo -n '%{$fg[blue]%}夏%{$reset_color%}' ;;
+		3)
+			echo -n '%{$fg[yellow]%}秋%{$reset_color%}' ;;
+		4)
+			echo -n '%{$fg[cyan]%}冬%{$reset_color%}' ;;
+	esac
+}
 
-local wd='%{$fg[$user_color]%}$(fish_wd)%{$reset_color%}'
+local wd='%{$fg_bold[$user_color]%}$(fish_wd)%{$reset_color%}'
 
 # Attach to the main session, or create it if it doesn't exist
 ta() {
@@ -17,10 +72,6 @@ ta() {
 		tmux attach -t $master_session
 		if [[ $? -ne 0 ]]; then
 			tmux new -ds $master_session
-			tmux split-pane -ht $master_session
-			tmux resize-pane -x 20
-			tmux split-pane -vt $master_session
-			tmux resize-pane -y 35
 			tmux select-pane -t $master_session:0.0
 			tmux attach -t $master_session
 		fi
@@ -29,8 +80,8 @@ ta() {
 
 tm() {
 	if ! tmux attach -t "mpsyt"; then
-		tmux new -ds "mpsyt"
-		tmux attach -t "mpsyt"
+		tmux new -ds "mpsyt"  mpsyt
+		tmux attach -t "mpsyt" -c "mpsyt"
 	fi
 }
 
@@ -39,7 +90,7 @@ source ~/.zshenv
 autoload -U colors && colors
 setopt promptsubst
 
-PROMPT="%n@%m ${wd}> "
+PROMPT="$(season) ${wd}> "
 
 # The following lines were added by compinstall
 
@@ -54,8 +105,9 @@ zstyle ':completion:*' max-errors 2
 zstyle ':completion:*:cd:*' file-patterns '*(/):directories'
 zstyle :compinstall filename "$HOME/.zshrc"
 
-autoload -Uz compinit
+autoload -U compinit
 compinit
+
 # End of lines added by compinstall
 # Lines configured by zsh-newuser-install
 HISTFILE=~/.histfile
@@ -64,10 +116,12 @@ SAVEHIST=1000
 # End of lines configured by zsh-newuser-install
 
 alias ls="ls --color=auto"
-alias vi="vim"
+alias vi="nvim"
+alias vim="nvim"
 alias gdb="gdb -q"
 alias tree="tree -C"
 #alias cd="cd -P"	# When cd-ing into a symlink, cd into the directory the link is pointing to
+
 
 bindkey -v
 bindkey -r '[A'
@@ -76,6 +130,8 @@ bindkey -r '/'
 bindkey '' history-beginning-search-backward
 bindkey '' history-beginning-search-backward
 
+eval `dircolors ~/.dircolors`
+
 # Multiplex every remote terminal
 if [[ $- == *i* && -z $TMUX && $TERM != "linux" && -n "$SSH_CONNECTION" ]]; then
 	ta "remote"
@@ -83,14 +139,18 @@ fi
 
 # TTY adheres to colorscheme now
 if [[ "$TERM" == "linux" ]]; then
+	colorNum=0
 	while read -r line
 	do
-		colorNum=$(rax2 $(echo $line | sed -e 's/.*\.color\([0-9]*\).*/\1/g') | cut -d"x" -f2)
 		if [[ $colorNum -ne 0 ]]; then
 			colorCode=$(echo $line | sed -e 's/.*#\([0-9a-f].*\).*/\1/g')
+			echo $colorCode
+			if [[ $colorCode != "" ]]; then
+				echo -en "\e]P${colorNum}${colorCode}"
+				: $(( colorNum += 1 ))
+			fi
 		fi
-		echo -en "\e]P${colorNum}${colorCode}"
-	done < <(grep "color[0-9]" ~/.Xresources)
+	done < <(grep -A20 'colorname\[' /etc/portage/savedconfig/x11-terms/st-0.7)
 fi
 
 

@@ -7,19 +7,19 @@ static const char *fonts[] = {
 	"FontAwesome:style=Regular:size=12"
 };
 static const char dmenufont[]       = "SFNS Display:style=regular:size=12";
-static const char normbordercolor[] = "#2e3440";
-static const char normbgcolor[]     = "#2e3440";
+static const char normbordercolor[] = "#2a2a2a";
+static const char normbgcolor[]     = "#2a2a2a";
 static const char normfgcolor[]     = "#eceff4";
-static const char selbordercolor[]  = "#81a1c1";
-static const char selbgcolor[]      = "#2e3440";
-static const char selfgcolor[]      = "#81a1c1";
-static const unsigned int borderpx  = 2;        /* border pixel of windows */
+static const char selbordercolor[]  = "#eceff4";
+static const char selbgcolor[]      = "#eceff4";
+static const char selfgcolor[]      = "#2a2a2a";
+static const unsigned int borderpx  = 1;        /* border pixel of windows */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
 
 /* tagging */
-static const char *tags[] = { "1", "2", "3", "4", "5", "6" };
+static const char *tags[] = { "一", "二", "三", "四", "五", "六" };
 
 static const Rule rules[] = {
 	/* xprop(1):
@@ -28,6 +28,7 @@ static const Rule rules[] = {
 	 */
 	/* class      instance    title       tags mask     isfloating   monitor */
 	{ "Firefox",  NULL,       NULL,       1 << 2,       0,           -1 },
+	{ "Nightly",  NULL,       NULL,       1 << 2,       0,           -1 },
 	{ "Pinentry", NULL,       NULL,       0,            1,           -1 },
 };
 

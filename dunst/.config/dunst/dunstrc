@@ -18,7 +18,7 @@ ignore_newline = no
 stack_duplicate = yes
 hide_duplicates_count = yes
 
-geometry = "300x50+1608+37"
+geometry = "300x50+1620+22"
 
 shrink = no
 
@@ -49,7 +49,7 @@ icon_folders = /usr/share/icons/Papirus-Dark/16x16/actions/:/usr/share/icons/Pap
 
 
 [frame]
-	width = 2
+	width = 0
 	color = "#81a1c1"
 
 [shortcuts]
@@ -59,18 +59,18 @@ icon_folders = /usr/share/icons/Papirus-Dark/16x16/actions/:/usr/share/icons/Pap
 	context = ctrl+shift+period
 
 [urgency-low]
-    background = "#2e3440"
-    foreground = "#eceff4"
+    foreground = "#2e3440"
+    background = "#eceff4"
 	timeout = 3
 
 [urgency_normal]
-	background = "#2e3440"
-	foreground = "#eceff4"
+	foreground = "#2e3440"
+	background = "#eceff4"
 	timeout = 3
 
 [urgency_critical]
-	background = "#2e3440"
-	foreground = "#eceff4"
+	foreground = "#2e3440"
+	background = "#eceff4"
 	timeout = 0
 
 

@@ -5,7 +5,7 @@
  *
  * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
  */
-static char font[] = "Monaco for Powerline:size=11:antialias=true:hintstyle=hintfull:dpi=96";
+static char font[] = "MonacoForPowerline:size=11:antialias=true:hintstyle=hintfull:dpi=96";
 static int borderpx = 0;
 #define histsize 2000
 
@@ -84,35 +84,35 @@ static char termname[] = "st-256color";
 static unsigned int tabspaces = 8;
 
 /* bg opacity */
-static const int alpha = 0xe8;
+static const int alpha = 0xe0;
 
 /* Terminal colors (16 first used in escape sequence) */
 static const char *colorname[] = {
 	/* 8 normal colors */
-	"#2e3440",
-	"#bf616a",
-	"#a3be8c",
-	"#ebcb8b",
-	"#5e81ac",
-	"#b48ead",
-	"#88c0d0",
-	"#e5e9f0",
+	"#2a2a2a",
+	"#d54e53",
+	"#b9ca4a",
+	"#e78c45",
+	"#7aa6da",
+	"#e7c547",
+	"#70c0b1",
+	"#eaeaea",
 
 	/* 8 bright colors */
-	"#9095a0",
-	"#bf616a",
-	"#a3be8c",
-	"#d08770",
-	"#81a1c1",
-	"#b48ead",
-	"#88c0d0",
-	"#eceff4",
+	"#969896",
+	"#d54e53",
+	"#b9ca4a",
+	"#e78c45",
+	"#7aa6da",
+	"#e7c547",
+	"#70c0b1",
+	"#eaeaea",
 
 	[255] = 0,
 
 	/* more colors can be added after 255 to use with DefaultXX */
 	"#555555",
-	"#1f2530",
+	"#2a2a2a",
 };
 
 
@@ -120,10 +120,10 @@ static const char *colorname[] = {
  * Default colors (colorname index)
  * foreground, background, cursor, reverse cursor
  */
-static unsigned int defaultfg = 15;
+static unsigned int defaultfg = 7;
 static unsigned int defaultbg = 257;
-static unsigned int defaultcs = 15;
-static unsigned int defaultrcs = 256;
+static unsigned int defaultcs = 7;
+static unsigned int defaultrcs = 0;
 
 /*
  * Default shape of cursor
@@ -138,7 +138,7 @@ static unsigned int cursorshape = 2;
  * Default colour and shape of the mouse cursor
  */
 static unsigned int mouseshape = XC_xterm;
-static unsigned int mousefg = 15;
+static unsigned int mousefg = 7;
 static unsigned int mousebg = 0;
 
 /*

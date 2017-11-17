@@ -2,10 +2,10 @@
 
 export THEOS=~/theos
 export PATH="$HOME/.local":"$HOME/.local/bin":$THEOS/bin:$PATH
-export EDITOR="vim"
+export EDITOR="nvim"
 export BROWSER="firefox"
 export TERMINAL="st"
-export SUDO_EDITOR="vim"
+export SUDO_EDITOR="nvim"
 export RANGER_LOAD_DEFAULT_RC="FALSE"
 
 # Options for Wayland (might switch from xorg at some point)
