@@ -1,7 +1,7 @@
 # ZSH environment config
 
 export THEOS=~/theos
-export PATH="$HOME/.local":"$HOME/.local/bin":$THEOS/bin:$PATH
+export PATH="$HOME/.local/bin":$THEOS/bin:$PATH:"$HOME/.gem/ruby/2.4.0/bin/"
 export EDITOR="nvim"
 export BROWSER="firefox"
 export TERMINAL="st"

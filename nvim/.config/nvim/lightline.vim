@@ -3,8 +3,7 @@ let g:lightline = {
 	\ 'separator': { 'left': '', 'right': '' },
 	\ 'subseparator': { 'left': '', 'right': ''},
 	\ 'tabline': {
-	\	'left': [ [ 'bufferinfo' ],
-	\			  ['bufferbefore'], ['buffercurrent'], ['bufferafter'] ],
+	\	'left': [ [ 'buffers' ] ],
 	\	'right':[ [ 'absolutepath' ] ]
 	\	},
 	\ 'active': {
@@ -22,19 +21,17 @@ let g:lightline = {
 	\	'linterOK': 'LightlineLinterOK',
 	\	'linterWarn': 'LightlineLinterWarn',
 	\	'linterError': 'LightlineLinterError',
-	\	'buffercurrent': 'lightline#buffer#buffercurrent2'
+	\	'buffers': 'lightline#bufferline#buffers'
 	\	},
 	\ 'component_type': {
 	\	'linterOK': 'ok',
 	\	'linterWarn': 'warning',
-	\	'linterError': 'error'
+	\	'linterError': 'error',
+	\	'buffers': 'tabsel'
 	\	},
 	\ 'component_function' : {
 	\	'fugitive': 'LightLineFugitive',
-	\	'rwstat': 'LightLineRWStat',
-	\	'bufferbefore': 'lightline#buffer#bufferbefore',
-	\	'bufferafter': 'lightline#buffer#bufferafter',
-	\	'bufferinfo': 'lightline#buffer#bufferinfo'
+	\	'rwstat': 'LightLineRWStat'
 	\	}
 	\ }
 " Lightline Functions " {{{

@@ -1,7 +1,7 @@
 call plug#begin('~/.config/nvim/bundle')
-Plug 'taohex/lightline-buffer'
 Plug 'itchyny/lightline.vim'
-Plug 'neomake/neomake'
+Plug 'mgee/lightline-bufferline'
+Plug 'w0rp/ale'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-fugitive'
@@ -9,27 +9,18 @@ call plug#end()
 
 source ~/.config/nvim/pluginStems.vim
 source ~/.config/nvim/lightline.vim
-call neomake#configure#automake('w')
+source ~/.config/nvim/ale.vim
+source ~/.config/nvim/colors.vim
 
-" Syntax highlighting options
-let g:tex_fast = ""
-syntax on
+hi ColorColumn ctermbg=gray
+call matchadd('ColorColumn', '\%81v', 100)
 
-colorscheme nord
-hi! Normal ctermbg=None
-hi! LineNr ctermbg=None cterm=Bold
-hi! CursorLineNr ctermfg=3
-hi! SpecialKey ctermbg=None
-
-" Custom commands {{{
-command! MakeTags !ctags -R . 
+command! MakeTags !ctags -R .
 
 command! PdfLatex !pdflatex -output-directory /tmp %
 "Write to a file when you forgot to run vim as root
 command! -bar SudoWrite w !sudo tee > /dev/null %
 command! W SudoWrite | e!
-
-" }}}
 
 " Set leader to ','
 let mapleader=","
@@ -56,6 +47,7 @@ nmap <C-j> <C-w>j
 nmap <C-k> <C-w>k
 nmap <C-l> <C-w>l
 
+" Get out of insert mode when in a terminal
 tmap <Leader><Esc> <C-\><C-n>
 
 " Comment lines
@@ -73,6 +65,8 @@ set tabstop=4
 set shiftwidth=4
 set smartindent
 
+set showtabline=2
+
 " Show all matching files when tab completing
 set wildmenu
 " Fuzzy search files recursively
@@ -81,7 +75,6 @@ set path+=**
 " Hide mode indicator from the command bar
 set noshowmode
 " Show line numbers
-set number
 set relativenumber
 
 " Disable smart indentation when pasting text
@@ -89,10 +82,13 @@ set pastetoggle=<F2>
 
 " View whitespace as meta-characters
 set list
-set listchars=tab:·\ ,trail:-
+set listchars=tab:·\ 
 
 " Auto-fold based on markers
 set foldmethod=marker
+
+set ignorecase
+set smartcase
 
 " Custom syntax highlighting for unusual file extensions
 augroup autoFileRecognition
@@ -105,6 +101,10 @@ augroup END
 
 " Automatically remove trailing space at the end of lines
 "autocmd BufWritePre * %s/\s\+$//e
+augroup fileTypeSyntaxOptions
+	autocmd!
+	autocmd FileType ruby set ts=2 sts=2 sw=2 expandtab
+augroup END
 
 augroup fileSpecificBindings
 	autocmd!
@@ -115,5 +115,3 @@ augroup fileSpecificBindings
 	" Rebuild tags
 	autocmd FileType {c,cpp,h,hpp,nasm,asm,inc,objc} map <F5> :MakeTags<CR>
 augroup END
-
-
