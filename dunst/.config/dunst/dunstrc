@@ -49,8 +49,8 @@ icon_folders = /usr/share/icons/Papirus-Dark/16x16/actions/:/usr/share/icons/Pap
 
 
 [frame]
-	width = 0
-	color = "#81a1c1"
+	width = 2
+	color = "#1cfa67"
 
 [shortcuts]
 	close = ctrl+space
@@ -59,18 +59,18 @@ icon_folders = /usr/share/icons/Papirus-Dark/16x16/actions/:/usr/share/icons/Pap
 	context = ctrl+shift+period
 
 [urgency-low]
-    foreground = "#2e3440"
-    background = "#eceff4"
+    foreground = "#fbf1c7"
+    background = "#282828"
 	timeout = 3
 
 [urgency_normal]
-	foreground = "#2e3440"
-	background = "#eceff4"
+	foreground = "#fbf1c7"
+	background = "#282828"
 	timeout = 3
 
 [urgency_critical]
-	foreground = "#2e3440"
-	background = "#eceff4"
+	foreground = "#fbf1c7"
+	background = "#282828"
 	timeout = 0
 
 

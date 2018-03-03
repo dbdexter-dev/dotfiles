@@ -1,8 +1,8 @@
 # Zsh config file
 
-local user_color='blue'
+local user_color='yellow'
 local master_session='master'
-local fish_wd() 
+local fish_wd()
 {
 	pwd | sed -e "s|^$HOME|~|;s|\([^/.]\)[^/]*/|\1/|g"
 }
@@ -13,27 +13,27 @@ local season()
 	local day="$(date +%d)"
 	local season="unk"
 	case "$month" in
-		1|2)
+		01|02)
 			season=4 ;;
-		3)
+		03)
 			if [[ $day -lt 21 ]]; then
 				season=4
 			else
 				season=1
 			fi
 			;;
-		4|5)
+		04|05)
 			season=1 ;;
-		6)
+		06)
 			if [[ $day -lt 21 ]]; then
 				season=1
 			else
 				season=2
 			fi
 			;;
-		7|8)
+		07|08)
 			season=2 ;;
-		9)
+		09)
 			if [[ $day -lt 23 ]]; then
 				season=2
 			else
@@ -54,11 +54,11 @@ local season()
 		1)
 			echo -n '%{$fg[green]%}春%{$reset_color%}' ;;
 		2)
-			echo -n '%{$fg[blue]%}夏%{$reset_color%}' ;;
+			echo -n '%{$fg[green]%}夏%{$reset_color%}' ;;
 		3)
-			echo -n '%{$fg[yellow]%}秋%{$reset_color%}' ;;
+			echo -n '%{$fg[green]%}秋%{$reset_color%}' ;;
 		4)
-			echo -n '%{$fg[cyan]%}冬%{$reset_color%}' ;;
+			echo -n '%{$fg[green]%}冬%{$reset_color%}' ;;
 	esac
 }
 
@@ -90,7 +90,12 @@ source ~/.zshenv
 autoload -U colors && colors
 setopt promptsubst
 
-PROMPT="$(season) ${wd}> "
+# if [[ "$TERM" == "linux" || "$TERM" == "tmux-256color" ]]; then
+# 	PROMPT="${wd}> "
+# else
+# 	PROMPT="$(season) ${wd}> "
+# fi
+PROMPT="${wd}> "
 
 # The following lines were added by compinstall
 
@@ -120,6 +125,7 @@ alias vi="nvim"
 alias vim="nvim"
 alias gdb="gdb -q"
 alias tree="tree -C"
+alias ifconfig="echo \"ifconfig is deprecated, use ip instead \""
 #alias cd="cd -P"	# When cd-ing into a symlink, cd into the directory the link is pointing to
 
 
@@ -142,18 +148,19 @@ if [[ "$TERM" == "linux" ]]; then
 	colorNum=0
 	while read -r line
 	do
-		if [[ $colorNum -ne 0 ]]; then
-			colorCode=$(echo $line | sed -e 's/.*#\([0-9a-f].*\).*/\1/g')
-			echo $colorCode
-			if [[ $colorCode != "" ]]; then
-				echo -en "\e]P${colorNum}${colorCode}"
-				: $(( colorNum += 1 ))
+		colorCode=$(echo $line | grep "#[0-9a-f]*"| sed -e 's/.*#\([0-9a-f]*\).*/\1/g')
+		if [[ $colorCode != "" ]]; then
+			if [[ $colorNum == 0 ]]; then
+				colorCode="000000"
 			fi
+			colorHex=$(rax2 "$colorNum" | cut -d'x' -f2)
+			echo -en "\e]P${colorHex}${colorCode}"
+			: $(( colorNum += 1 ))
 		fi
 	done < <(grep -A20 'colorname\[' /etc/portage/savedconfig/x11-terms/st-0.7)
 fi
 
 
-if [[ -z $DISPLAY ]] && [[ $(tty) = /dev/tty1 ]]; then 
- 	exec startx
+if [[ -z $DISPLAY ]] && [[ $(tty) = /dev/tty1 ]]; then
+ 	exec startx -- vt1
 fi

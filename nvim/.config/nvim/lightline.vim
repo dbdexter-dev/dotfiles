@@ -1,5 +1,5 @@
 let g:lightline = {
-	\ 'colorscheme': 'Tomorrow_Night_Bright',
+	\ 'colorscheme': 'dbdexter',
 	\ 'separator': { 'left': '', 'right': '' },
 	\ 'subseparator': { 'left': '', 'right': ''},
 	\ 'tabline': {
